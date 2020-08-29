@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+.section-content{
+  position:relative;
+  margin:0 auto;
+  z-index:1
+}
+
+.section-content-p30{
+  padding:0 2%
+}
+
+.main-content{
+  min-height:100vh;
+  padding:6% 10%;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:#333;
+  font-weight:700;
+  margin:0;
+  line-height:1.2
+}
+
+h1{
+  font-size:36px
+}
+
+a:hover{
+  color:#333
+}
+
+.detail-section{
+  margin-top:60px
+}
+
+.detail-image{
+  width: 200px;
+}

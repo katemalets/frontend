@@ -1,0 +1,16 @@
+<p> {{user.username}} </p>
+<div>{{user.email}} </div>
+
+        <div *ngFor="let collection of user.collections" class="col-md-12">
+          <a routerLink="/collections/{{collection.id}}">
+            <img width="250px" src="{{collection.imageURL}}" class="img-responsive">
+            <h1>{{collection.name}}</h1>
+          </a>
+          <h5>{{collection.description}}</h5>
+            <button  class="btn btn-light btn-sm">Change collection</button>
+        </div>
+
+
+
+
+

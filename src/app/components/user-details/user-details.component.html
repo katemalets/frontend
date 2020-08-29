@@ -1,0 +1,13 @@
+
+{{user.username}}
+{{user.authorities}}
+{{user.id}}
+
+
+<div *ngFor="let collection of user.collections" class="col-md-3">
+  <a routerLink="/collections/{{collection.id}}">
+    <h6>{{collection.name}}</h6>
+    <img width="250px" src="{{collection.imageURL}}" class="img-responsive">
+
+  </a>
+</div>
