@@ -16,6 +16,7 @@ import { CollectionListComponent } from './components/collection-list/collection
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UpdateCollectionComponent } from './components/update-collection/update-collection.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'collections', component: CollectionListComponent},
   { path: 'collections/:id', component: CollectionDetailsComponent},
-  { path: 'users/:id', component: UserDetailsComponent},
+  { path: 'collections/update/:id', component: UpdateCollectionComponent},
+  { path: 'users/:id', component: HomeComponent},
   { path: 'items/:id', component: ItemDetailsComponent}
 ];
 
@@ -38,7 +40,8 @@ const routes: Routes = [
     CollectionListComponent,
     CollectionDetailsComponent,
     ItemDetailsComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UpdateCollectionComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -8,8 +8,6 @@ import {TokenStorageService} from './services/token-storage.service';
 })
 export class AppComponent {
   private authorities: string[];
-  private collections: string[];
-  private images: string[];
   isLoggedIn = false;
   showAdminBoard = false;
   username: string;
@@ -24,10 +22,8 @@ export class AppComponent {
       const user = this.tokenStorageService.getUser();
       console.log(this.tokenStorageService.getUser());
       this.authorities = user.authorities;
-      this.collections = user.collections;
       this.showAdminBoard = this.authorities.includes('ROLE_ADMIN');
       this.username = user.username;
-      this.images = user.images;
     }
   }
 

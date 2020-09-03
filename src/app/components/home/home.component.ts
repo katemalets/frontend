@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {TokenStorageService} from '../../services/token-storage.service';
-import {Cloudinary} from '@cloudinary/angular-5.x';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../interface/user';
 
 @Component({
@@ -14,7 +13,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService,
+              private router: Router) { }
 
   url = 'users';
   user: User;
@@ -36,4 +36,6 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+
 }

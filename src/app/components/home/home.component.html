@@ -7,7 +7,8 @@
             <h1>{{collection.name}}</h1>
           </a>
           <h5>{{collection.description}}</h5>
-            <button  class="btn btn-light btn-sm">Change collection</button>
+            <button routerLink="/collections/update/{{collection.id}}" class="btn btn-light btn-sm">Change collection</button>
+          <button  class="btn btn-danger btn-sm">Delete collection</button>
         </div>
 
 
