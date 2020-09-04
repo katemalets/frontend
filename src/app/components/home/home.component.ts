@@ -3,6 +3,7 @@ import {UserService} from '../../services/user.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../../interface/user';
+import {Collection} from '../../interface/collection';
 
 @Component({
   selector: 'app-home',
@@ -37,5 +38,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
+  // tslint:disable-next-line:typedef
+  deleteCollection(collection: Collection): void{
+    this.userService.deleteCollection(collection).subscribe(data => {
+      console.log('Deleting collection: ' + collection.name);
+      this.handleUserDetails();
+      }
+    );
+  }
 }

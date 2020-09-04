@@ -4,5 +4,5 @@ export interface Collection {
   topic: string;
   imageURL: string;
   description: string;
-  items: {id: number, name: string, description: string, imageURL: string };
+  items: { id: number, name: string, description: string, imageURL: string, tags: {id: number, name: string}};
 }

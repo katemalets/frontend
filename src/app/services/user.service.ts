@@ -25,6 +25,10 @@ export class UserService {
     return this.httpClient.get<any>(API_URL + url + id);
   }
 
+  updateItem(id: number, value: any): Observable<any> {
+    return this.httpClient.put(API_URL + 'items/' + id, value, httpOptions);
+  }
+
   updateCollection(id: number, value: any): Observable<any> {
     return this.httpClient.put(API_URL + 'collections/' + id, value, httpOptions);
   }
@@ -47,6 +51,23 @@ export class UserService {
   makeAdmin(user) {
     return this.httpClient.put(API_URL + 'users' + '/makeAdmin/' + user.id, user);
   }
+
+  // tslint:disable-next-line:typedef
+  deleteCollection(collection) {
+    return this.httpClient.delete(API_URL + 'collections/' + collection.id);
+  }
+
+  // tslint:disable-next-line:typedef
+  deleteItem(item) {
+    return this.httpClient.delete(API_URL + 'items/' + item.id);
+  }
+
+  // tslint:disable-next-line:typedef
+  createItem(item){
+    return this.httpClient.post(API_URL + 'items/collections/5' , item);
+  }
+
+
 }
 
 

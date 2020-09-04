@@ -10,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class UpdateCollectionComponent implements OnInit {
 
- // id: number;
   collection: Collection;
 
   constructor(private userService: UserService, private route: ActivatedRoute) {

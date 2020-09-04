@@ -8,7 +8,9 @@
           </a>
           <h5>{{collection.description}}</h5>
             <button routerLink="/collections/update/{{collection.id}}" class="btn btn-light btn-sm">Change collection</button>
-          <button  class="btn btn-danger btn-sm">Delete collection</button>
+          <button (click)="deleteCollection(collection)" class="btn btn-danger btn-sm">Delete collection</button>
+          <button routerLink="/collections/list/{{collection.id}}" class="btn btn-warning btn-sm">Change Items</button>
+          <button routerLink="/items/collections/{{collection.id}}" class="btn btn-primary btn-sm">Create item</button>
         </div>
 
 
