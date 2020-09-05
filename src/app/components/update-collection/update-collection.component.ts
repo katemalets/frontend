@@ -21,7 +21,6 @@ export class UpdateCollectionComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(collectionId, 'collections/update/').subscribe(
@@ -32,7 +31,6 @@ export class UpdateCollectionComponent implements OnInit {
     );
   }
 
-  // tslint:disable-next-line:typedef
   updateCollection() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     console.log(this.collection);
@@ -42,7 +40,6 @@ export class UpdateCollectionComponent implements OnInit {
       });
   }
 
-  // tslint:disable-next-line:typedef
   onSubmit() {
     this.updateCollection();
   }

@@ -24,7 +24,6 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleUserDetails() {
     const userId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(userId, this.url + '/').subscribe(

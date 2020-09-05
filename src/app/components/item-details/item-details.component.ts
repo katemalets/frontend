@@ -21,7 +21,6 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleItemDetails() {
     const itemId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(itemId, this.url + '/').subscribe(

@@ -14,11 +14,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private token: TokenStorageService,
-              private router: Router) { }
+              private token: TokenStorageService) { }
 
   url = 'users';
   user: User;
+  userId: number;
+  id: number;
   collections: { name: string, topic: string, imageURL: string, description: string};
 
   ngOnInit(): void {
@@ -27,10 +28,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleUserDetails() {
-    const userId = this.token.getUser().id;
-    this.userService.getOne(userId, this.url + '/').subscribe(
+    this.userId = this.token.getUser().id;
+    this.id = +this.route.snapshot.paramMap.get('id');
+    // tslint:disable-next-line:triple-equals
+    if (this.id !== 0){
+      this.userId = this.id;
+    }
+    this.userService.getOne(this.userId, this.url + '/').subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.user = data;
@@ -38,7 +43,6 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // tslint:disable-next-line:typedef
   deleteCollection(collection: Collection): void{
     this.userService.deleteCollection(collection).subscribe(data => {
       console.log('Deleting collection: ' + collection.name);

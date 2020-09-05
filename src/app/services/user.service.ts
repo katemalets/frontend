@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  // tslint:disable-next-line:no-shadowed-variable
+
   constructor(private httpClient: HttpClient) { }
 
   get(url: string): Observable<any> {
@@ -32,39 +32,33 @@ export class UserService {
   updateCollection(id: number, value: any): Observable<any> {
     return this.httpClient.put(API_URL + 'collections/' + id, value, httpOptions);
   }
-  // tslint:disable-next-line:typedef
+
   public deleteUser(user) {
     return this.httpClient.delete(API_URL + 'users' + '/' + user.id);
   }
 
-  // tslint:disable-next-line:typedef
   blockUser(user) {
     return this.httpClient.put(API_URL + 'users' + '/block/' + user.id, user);
   }
 
-  // tslint:disable-next-line:typedef
   unblockUser(user) {
     return this.httpClient.put(API_URL + 'users' + '/unblock/' + user.id, user);
   }
 
-  // tslint:disable-next-line:typedef
   makeAdmin(user) {
     return this.httpClient.put(API_URL + 'users' + '/makeAdmin/' + user.id, user);
   }
 
-  // tslint:disable-next-line:typedef
   deleteCollection(collection) {
     return this.httpClient.delete(API_URL + 'collections/' + collection.id);
   }
 
-  // tslint:disable-next-line:typedef
   deleteItem(item) {
     return this.httpClient.delete(API_URL + 'items/' + item.id);
   }
 
-  // tslint:disable-next-line:typedef
-  createItem(item){
-    return this.httpClient.post(API_URL + 'items/collections/5' , item);
+  createItem(item, id: number){
+    return this.httpClient.post(API_URL + 'items/collections/' + id , item);
   }
 
 

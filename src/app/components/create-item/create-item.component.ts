@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Item} from '../../interface/item';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-create-item',
@@ -13,13 +14,12 @@ export class CreateItemComponent implements OnInit {
   item: Item = undefined;
   myForm: FormGroup;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  // tslint:disable-next-line:typedef
   private createForm() {
     this.myForm = this.formBuilder.group({
       name: new FormControl(this.item ? this.item.name : '', Validators.required),
@@ -29,7 +29,6 @@ export class CreateItemComponent implements OnInit {
     console.log(this.myForm);
   }
 
-  // tslint:disable-next-line:typedef
   submitForm(data: FormGroup) {
     if (data.valid) {
       console.log(data);
@@ -38,7 +37,8 @@ export class CreateItemComponent implements OnInit {
   }
 
   addItem(item: Item): void {
-    this.userService.createItem(item).subscribe(res => {
+    const collectionId: number = +this.route.snapshot.paramMap.get('id');
+    this.userService.createItem(item, collectionId).subscribe(res => {
      // const response = JSON.parse(JSON.stringify(res));
      // this.getData()
       console.log(item);
@@ -48,5 +48,4 @@ export class CreateItemComponent implements OnInit {
     }, error => {
     });
   }
-
 }

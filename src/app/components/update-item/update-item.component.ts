@@ -22,7 +22,6 @@ export class UpdateItemComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleItemDetails() {
     const itemId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(itemId, 'items/update/').subscribe(
@@ -33,7 +32,6 @@ export class UpdateItemComponent implements OnInit {
     );
   }
 
-  // tslint:disable-next-line:typedef
   updateItem() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     console.log(this.item);
@@ -43,7 +41,6 @@ export class UpdateItemComponent implements OnInit {
       });
   }
 
-  // tslint:disable-next-line:typedef
   onSubmit() {
     this.updateItem();
   }

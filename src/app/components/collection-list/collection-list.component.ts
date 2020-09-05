@@ -24,5 +24,4 @@ export class CollectionListComponent implements OnInit {
       this.collections = data;
     });
   }
-
 }

@@ -23,7 +23,6 @@ export class CollectionDetailsComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(collectionId, this.url + '/').subscribe(

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {TokenStorageService} from '../../services/token-storage.service';
-import {User} from '../../interface/user';
 import {Collection} from '../../interface/collection';
 import {Item} from '../../interface/item';
 
@@ -27,7 +25,6 @@ export class ItemListComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
   private handleItemDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
     this.userService.getOne(collectionId, this.url + '/').subscribe(
