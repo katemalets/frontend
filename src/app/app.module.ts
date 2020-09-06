@@ -20,6 +20,8 @@ import { UpdateCollectionComponent } from './components/update-collection/update
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { UpdateItemComponent } from './components/update-item/update-item.component';
 import { CreateItemComponent } from './components/create-item/create-item.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchItemsComponent } from './components/search-items/search-items.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,12 +29,14 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'collections', component: CollectionListComponent},
+  { path: 'items', component: SearchItemsComponent},
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
   { path: 'items/update/:id', component: UpdateItemComponent},
   { path: 'items/collections/:id', component: CreateItemComponent},
   { path: 'users/:id', component: HomeComponent},
+  { path: 'items/search/:keyword', component: SearchItemsComponent},
   { path: 'collections/list/:id', component: ItemListComponent}
 ];
 
@@ -50,7 +54,9 @@ const routes: Routes = [
     UpdateCollectionComponent,
     ItemListComponent,
     UpdateItemComponent,
-    CreateItemComponent
+    CreateItemComponent,
+    SearchComponent,
+    SearchItemsComponent
   ],
     imports: [
         RouterModule.forRoot(routes),

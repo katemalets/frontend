@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Item} from '../interface/item';
+import {map} from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8080/api/';
 
@@ -23,6 +25,10 @@ export class UserService {
 
   getOne(id: number, url: string): Observable<any> {
     return this.httpClient.get<any>(API_URL + url + id);
+  }
+
+  searchItems(keyword: string): Observable<any> {
+    return this.httpClient.get<any>(API_URL + 'items/search/' + keyword);
   }
 
   updateItem(id: number, value: any): Observable<any> {
@@ -60,8 +66,6 @@ export class UserService {
   createItem(item, id: number){
     return this.httpClient.post(API_URL + 'items/collections/' + id , item);
   }
-
-
 }
 
 
