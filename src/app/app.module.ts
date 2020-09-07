@@ -23,6 +23,7 @@ import { CreateItemComponent } from './components/create-item/create-item.compon
 import { SearchComponent } from './components/search/search.component';
 import { SearchItemsComponent } from './components/search-items/search-items.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { TagItemsComponent } from './components/tag-items/tag-items.component';
 
 const routes: Routes = [
   { path: 'main', component: MainPageComponent},
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'items', component: SearchItemsComponent},
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
+  { path: 'tags/:id', component: TagItemsComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
   { path: 'items/update/:id', component: UpdateItemComponent},
   { path: 'items/collections/:id', component: CreateItemComponent},
@@ -59,7 +61,8 @@ const routes: Routes = [
     CreateItemComponent,
     SearchComponent,
     SearchItemsComponent,
-    MainPageComponent
+    MainPageComponent,
+    TagItemsComponent
   ],
     imports: [
         RouterModule.forRoot(routes),
