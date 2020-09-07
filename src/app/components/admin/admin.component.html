@@ -23,7 +23,9 @@
           <p>{{authority.authority}}</p>
           </ul>
         </td>
-        <td><a type="link" (click)="deleteUser(user)">
+        <td>
+          <div>
+          <a type="link" (click)="deleteUser(user)">
           <img src="https://res.cloudinary.com/katemalets/image/upload/v1598545654/icons/delete_nrzq0g.png"></a>
         <a (click)="blockUser(user)">
           <img src="https://res.cloudinary.com/katemalets/image/upload/v1598545654/icons/caps-lock_ewopqh.png">
@@ -37,6 +39,7 @@
           <a routerLink="/{{url}}/{{user.id}}">
             <img src="https://res.cloudinary.com/katemalets/image/upload/v1598545654/icons/search_qgkntg.png">
           </a>
+          </div>
         </td>
       </tr>
       </tbody>

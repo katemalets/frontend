@@ -2,41 +2,43 @@
   <div class="section-content section-content-p30">
     <div class="container-fluid">
 
-      <div *ngFor="let tag of tags" class="col-md-4 col-sm-6">
-        <a routerLink="/tags/{{tag.id}}">
-          <p>{{tag.name}}</p>
-        </a>
+      <h3>Tags example</h3>
+      <div class="row">
+        <div *ngFor="let tag of tags" class="col-md-3 col-sm-6">
+          <a routerLink="/tags/{{tag.id}}">
+            <p>{{tag.name}}</p>
+          </a>
+        </div>
       </div>
-
-      <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">
-        No collections found</div>
 
       <h3>Collections with lot of items</h3>
       <div class="row">
         <div *ngFor="let collection of collections" class="col-md-4 col-sm-6">
           <a routerLink="/collections/{{collection.id}}">
             <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
-            <h1>{{collection.name}}</h1>
+              <h1>{{collection.name}}</h1>
           </a>
           <button  class="btn btn-light btn-sm">Add to list</button>
         </div>
         <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">
-          No collections found</div>
+          No collections found
+        </div>
       </div>
 
-        <h3>Last added items</h3>
+      <h3>Last added items</h3>
       <div class="row">
-      <div *ngFor="let item of items" class="col-md-4 col-sm-6">
-        <a routerLink="/items/{{item.id}}">
-          <img width="300px" src="{{item.imageURL}}" class="img-responsive">
-          <h1>{{item.name}}</h1>
-        </a>
-        <button  class="btn btn-light btn-sm">Add to list</button>
+        <div *ngFor="let item of items" class="col-md-4 col-sm-6">
+          <a routerLink="/items/{{item.id}}">
+            <img width="300px" src="{{item.imageURL}}" class="img-responsive">
+            <h1>{{item.name}}</h1>
+          </a>
+          <button  class="btn btn-light btn-sm">Add to list</button>
+        </div>
+        <div *ngIf="items?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          No items found
+        </div>
       </div>
-      <div *ngIf="items?.length == 0" class="alert alert-warning col-md-12" role="alert">
-        No items found
-      </div>
-      </div>
+
     </div>
   </div>
 </div>

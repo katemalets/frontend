@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Collection} from '../../interface/collection';
 import {UserService} from '../../services/user.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Item} from '../../interface/item';
 
 @Component({
@@ -13,7 +12,8 @@ export class UpdateItemComponent implements OnInit {
 
   item: Item;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,6 +43,7 @@ export class UpdateItemComponent implements OnInit {
 
   onSubmit() {
     this.updateItem();
+    this.router.navigateByUrl('home');
   }
 
 }

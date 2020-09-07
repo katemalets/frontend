@@ -2,7 +2,7 @@ import {Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../interface/user';
 import {TokenStorageService} from '../../services/token-storage.service';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -37,13 +37,13 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(user)
       .subscribe( data => {
         console.log('Deleting user: ' + user.username);
-        this.users = this.users.filter(u => u !== user);
         if (this.tokenService.getUser().id === user.id){
           console.log('------> equals!!!');
           this.tokenService.signOut();
           this.router.navigateByUrl('main');
         } else {
           console.log('Everything is okey');
+          this.users = this.users.filter(u => u !== user);
         }
       });
   }
@@ -52,13 +52,13 @@ export class AdminComponent implements OnInit {
     this.userService.blockUser(user)
       .subscribe( data => {
         console.log('Blocking user: ' + user.username);
-        this.getUsers();
         if (this.tokenService.getUser().id === user.id){
           console.log('------> equals!!!');
           this.tokenService.signOut();
           this.router.navigateByUrl('main');
         } else {
           console.log('Everything is okey');
+          this.getUsers();
         }
       });
   }

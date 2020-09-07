@@ -12,7 +12,8 @@ export class UpdateCollectionComponent implements OnInit {
 
   collection: Collection;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -36,11 +37,12 @@ export class UpdateCollectionComponent implements OnInit {
     console.log(this.collection);
     this.userService.updateCollection(id, this.collection)
       .subscribe( data => {
-        console.log(this.collection);
+        console.log('collection ' + this.collection.name + ' updated');
       });
   }
 
   onSubmit() {
     this.updateCollection();
+    this.router.navigateByUrl('home');
   }
 }
