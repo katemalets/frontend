@@ -22,8 +22,10 @@ import { UpdateItemComponent } from './components/update-item/update-item.compon
 import { CreateItemComponent } from './components/create-item/create-item.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchItemsComponent } from './components/search-items/search-items.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 const routes: Routes = [
+  { path: 'main', component: MainPageComponent},
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -56,7 +58,8 @@ const routes: Routes = [
     UpdateItemComponent,
     CreateItemComponent,
     SearchComponent,
-    SearchItemsComponent
+    SearchItemsComponent,
+    MainPageComponent
   ],
     imports: [
         RouterModule.forRoot(routes),
