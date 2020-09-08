@@ -26,8 +26,8 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { TagItemsComponent } from './components/tag-items/tag-items.component';
 
 const routes: Routes = [
-  { path: 'main', component: MainPageComponent},
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: MainPageComponent},
+  { path: 'account', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
@@ -41,7 +41,8 @@ const routes: Routes = [
   { path: 'items/collections/:id', component: CreateItemComponent},
   { path: 'users/:id', component: HomeComponent},
   { path: 'items/search/:keyword', component: SearchItemsComponent},
-  { path: 'collections/list/:id', component: ItemListComponent}
+  { path: 'collections/list/:id', component: ItemListComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 @NgModule({

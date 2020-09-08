@@ -9,9 +9,14 @@ import {Item} from '../../interface/item';
   styleUrls: ['./item-details.component.css']
 })
 export class ItemDetailsComponent implements OnInit {
+
   url = 'items';
   item: Item;
-  tags: {id: number, name: string};
+  tags: {
+    id: number;
+    name: string
+  };
+
   constructor(private userService: UserService,
               private route: ActivatedRoute) { }
 

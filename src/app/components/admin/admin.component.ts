@@ -12,8 +12,12 @@ import {Router} from '@angular/router';
 export class AdminComponent implements OnInit {
 
   users: Array<User>;
-  authorities: {id: number, authority: string};
+  authorities: {
+    id: number;
+    authority: string
+  };
   url = 'users';
+
   constructor(private userService: UserService,
               private tokenService: TokenStorageService,
               private router: Router) {

@@ -12,7 +12,8 @@ export class UpdateItemComponent implements OnInit {
 
   item: Item;
 
-  constructor(private userService: UserService, private route: ActivatedRoute,
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
@@ -43,7 +44,6 @@ export class UpdateItemComponent implements OnInit {
 
   onSubmit() {
     this.updateItem();
-    this.router.navigateByUrl('home');
+    //this.router.navigateByUrl('home');
   }
-
 }

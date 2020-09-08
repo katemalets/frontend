@@ -11,13 +11,17 @@ import {Item} from '../../interface/item';
 })
 export class ItemListComponent implements OnInit {
 
-  constructor(private userService: UserService,
-              private route: ActivatedRoute) { }
-
   url = 'collections';
   collection: Collection;
-  items: { id: number; name: string; description: string; imageURL: string};
+  items: {
+    id: number;
+    name: string;
+    description: string;
+    imageURL: string
+  };
 
+  constructor(private userService: UserService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -45,5 +49,4 @@ export class ItemListComponent implements OnInit {
       }
     );
   }
-
 }

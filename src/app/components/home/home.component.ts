@@ -12,15 +12,20 @@ import {Collection} from '../../interface/collection';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService: UserService,
-              private route: ActivatedRoute,
-              private token: TokenStorageService) { }
-
   url = 'users';
   user: User;
   userId: number;
   id: number;
-  collections: { name: string, topic: string, imageURL: string, description: string};
+  collections: {
+    name: string;
+    topic: string;
+    imageURL: string;
+    description: string
+  };
+
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private token: TokenStorageService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {

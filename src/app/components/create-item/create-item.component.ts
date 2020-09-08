@@ -14,7 +14,9 @@ export class CreateItemComponent implements OnInit {
   item: Item = undefined;
   myForm: FormGroup;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();

@@ -12,7 +12,8 @@ export class UpdateCollectionComponent implements OnInit {
 
   collection: Collection;
 
-  constructor(private userService: UserService, private route: ActivatedRoute,
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 

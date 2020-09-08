@@ -4,6 +4,13 @@ export interface User {
   email: string;
   password: string;
   enabled: boolean;
-  authorities: {id: number, authority: string};
-  collections: { name: string, topic: string, imageURL: string};
+  authorities: {
+    id: number;
+    authority: string
+  };
+  collections: {
+    name: string;
+    topic: string;
+    imageURL: string
+  };
 }

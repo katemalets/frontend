@@ -15,7 +15,11 @@ export class UserDetailsComponent implements OnInit {
 
   url = 'users';
   user: User;
-  collections: { name: string, topic: string, imageURL: string};
+  collections: {
+    name: string;
+    topic: string;
+    imageURL: string
+  };
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {

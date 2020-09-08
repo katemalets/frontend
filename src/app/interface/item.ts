@@ -3,5 +3,8 @@ export interface Item {
   name: string;
   description: string;
   imageURL: string;
-  tags: {id: number, name: string};
+  tags: {
+    id: number;
+    name: string
+  };
 }
