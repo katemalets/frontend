@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
 import {Tag} from '../../interface/tag';
 import {ActivatedRoute} from '@angular/router';
+import {CollectionService} from '../../services/collection.service';
 
 @Component({
   selector: 'app-tag-items',
@@ -18,7 +18,7 @@ export class TagItemsComponent implements OnInit {
     imageURL: string
   };
 
-  constructor(private userService: UserService,
+  constructor(private collectionService: CollectionService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class TagItemsComponent implements OnInit {
 
   private getItems(): void{
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(collectionId, 'top/tags/').subscribe(data => {
+    this.collectionService.getCollection(collectionId, '/top/tags').subscribe(data => {
       this.tag = data;
       this.items = this.tag.items;
       console.log('Data =' + JSON.stringify(data));

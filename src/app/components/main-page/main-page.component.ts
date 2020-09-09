@@ -3,6 +3,9 @@ import {UserService} from '../../services/user.service';
 import {Collection} from '../../interface/collection';
 import {Item} from '../../interface/item';
 import {Tag} from '../../interface/tag';
+import {CollectionService} from '../../services/collection.service';
+import {ItemService} from '../../services/item.service';
+import {TagService} from '../../services/tag.service';
 
 @Component({
   selector: 'app-main-page',
@@ -11,36 +14,40 @@ import {Tag} from '../../interface/tag';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private collectionService: CollectionService,
+              private itemService: ItemService,
+              private tagService: TagService) { }
 
-  collections: Array<Collection>;
-  items: Array<Item>;
-  tags: Array<Tag>;
+  collections: Collection;
+  items: Item;
+  tags: Tag;
+  maxCollectionsNumber = 6;
+  maxItemsNumber = 6;
+  url = '/top';
 
   ngOnInit(): void {
-    this.getCollections();
-    this.getItems();
+    this.getTopCollections();
+    this.getLastItems();
     this.getTags();
   }
 
-  getCollections(): void {
-    this.userService.get('top/collections').subscribe(data => {
-      //  console.log('Collections: ' + JSON.stringify(data));
+  getTopCollections(): void{
+    this.collectionService.getTopCollections(this.maxCollectionsNumber, this.url + '/collections').subscribe(data => {
+     // console.log('Top collections' + JSON.stringify(data));
       this.collections = data;
     });
   }
 
-  getItems(): void{
-    this.userService.get('top/items').subscribe(data => {
+  getLastItems(): void{
+    this.itemService.getLastItems(this.maxItemsNumber, this.url + '/items').subscribe(data => {
+     // console.log('Last Items' + JSON.stringify(data));
       this.items = data;
-      console.log('general items' + JSON.stringify(data));
     });
   }
 
   getTags(): void{
-    this.userService.get('top/tags').subscribe( data => {
+    this.tagService.getTags( this.url + '/tags').subscribe( data => {
       this.tags = data;
     });
   }
-
 }

@@ -1,5 +1,5 @@
-<p> {{user.username}} </p>
-<div>{{user.email}} </div>
+<h3> Your name:  {{user.username}} </h3>
+<h3> Email: {{user.email}} </h3>
 
         <div *ngFor="let collection of user.collections" class="col-md-12">
           <a routerLink="/collections/{{collection.id}}">
@@ -7,10 +7,14 @@
             <h1>{{collection.name}}</h1>
           </a>
           <h5>{{collection.description}}</h5>
-            <button routerLink="/collections/update/{{collection.id}}" class="btn btn-light btn-sm">Change collection</button>
-          <button (click)="deleteCollection(collection)" class="btn btn-danger btn-sm">Delete collection</button>
-          <button routerLink="/collections/list/{{collection.id}}" class="btn btn-warning btn-sm">Change Items</button>
-          <button routerLink="/items/collections/{{collection.id}}" class="btn btn-primary btn-sm">Create item</button>
+
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button routerLink="/collections" type="button" class="btn btn-light">Add collection</button>
+            <button routerLink="/collections/update/{{collection.id}}" type="button" class="btn btn-light">Change collection</button>
+            <button (click)="deleteCollection(collection)" type="button" class="btn btn-light">Delete collection</button>
+            <button routerLink="/collections/list/{{collection.id}}" type="button" class="btn btn-light">Change Items</button>
+            <button routerLink="/items/collections/{{collection.id}}" type="button" class="btn btn-light">Create item</button>
+          </div>
         </div>
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Item} from '../../interface/item';
+import {ItemService} from '../../services/item.service';
 
 @Component({
   selector: 'app-update-item',
@@ -12,7 +13,7 @@ export class UpdateItemComponent implements OnInit {
 
   item: Item;
 
-  constructor(private userService: UserService,
+  constructor(private itemService: ItemService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -25,7 +26,7 @@ export class UpdateItemComponent implements OnInit {
 
   private handleItemDetails() {
     const itemId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(itemId, 'items/update/').subscribe(
+    this.itemService.getItem(itemId, '/items/update').subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
@@ -36,7 +37,7 @@ export class UpdateItemComponent implements OnInit {
   updateItem() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     console.log(this.item);
-    this.userService.updateItem(id, this.item)
+    this.itemService.updateItem(id, this.item)
       .subscribe( data => {
         console.log(this.item);
       });

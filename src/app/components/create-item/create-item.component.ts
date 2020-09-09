@@ -3,6 +3,7 @@ import {UserService} from '../../services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Item} from '../../interface/item';
 import {ActivatedRoute} from '@angular/router';
+import {ItemService} from '../../services/item.service';
 
 @Component({
   selector: 'app-create-item',
@@ -14,7 +15,7 @@ export class CreateItemComponent implements OnInit {
   item: Item = undefined;
   myForm: FormGroup;
 
-  constructor(private userService: UserService,
+  constructor(private itemService: ItemService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute) { }
 
@@ -40,7 +41,7 @@ export class CreateItemComponent implements OnInit {
 
   addItem(item: Item): void {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.createItem(item, collectionId).subscribe(res => {
+    this.itemService.createItem(item, collectionId).subscribe(res => {
      // const response = JSON.parse(JSON.stringify(res));
      // this.getData()
       console.log(item);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {Item} from '../../interface/item';
+import {ItemService} from '../../services/item.service';
 
 @Component({
   selector: 'app-item-details',
@@ -10,14 +10,14 @@ import {Item} from '../../interface/item';
 })
 export class ItemDetailsComponent implements OnInit {
 
-  url = 'items';
+  url = '/items';
   item: Item;
   tags: {
     id: number;
     name: string
   };
 
-  constructor(private userService: UserService,
+  constructor(private itemService: ItemService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class ItemDetailsComponent implements OnInit {
 
   private handleItemDetails() {
     const itemId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(itemId, this.url + '/').subscribe(
+    this.itemService.getItem(itemId, this.url).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;

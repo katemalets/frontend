@@ -4,6 +4,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../interface/user';
 import {Collection} from '../../interface/collection';
+import {CollectionService} from '../../services/collection.service';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(private userService: UserService,
+              private collectionService: CollectionService,
               private route: ActivatedRoute,
               private token: TokenStorageService) { }
 
@@ -49,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteCollection(collection: Collection): void{
-    this.userService.deleteCollection(collection).subscribe(data => {
+    this.collectionService.deleteCollection(collection).subscribe(data => {
       console.log('Deleting collection: ' + collection.name);
       this.handleUserDetails();
       }

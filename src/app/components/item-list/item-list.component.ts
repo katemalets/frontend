@@ -3,6 +3,8 @@ import {UserService} from '../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {Collection} from '../../interface/collection';
 import {Item} from '../../interface/item';
+import {CollectionService} from '../../services/collection.service';
+import {ItemService} from '../../services/item.service';
 
 @Component({
   selector: 'app-item-list',
@@ -11,7 +13,7 @@ import {Item} from '../../interface/item';
 })
 export class ItemListComponent implements OnInit {
 
-  url = 'collections';
+  url = '/collections';
   collection: Collection;
   items: {
     id: number;
@@ -20,7 +22,8 @@ export class ItemListComponent implements OnInit {
     imageURL: string
   };
 
-  constructor(private userService: UserService,
+  constructor(private collectionService: CollectionService,
+              private itemService: ItemService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -31,7 +34,7 @@ export class ItemListComponent implements OnInit {
 
   private handleItemDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(collectionId, this.url + '/').subscribe(
+    this.collectionService.getCollection(collectionId, this.url).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
@@ -43,7 +46,7 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteItem(item: Item): void{
-    this.userService.deleteItem(item).subscribe(data => {
+    this.itemService.deleteItem(item).subscribe(data => {
         console.log('Deleting item: ' + item.name);
         this.handleItemDetails();
       }

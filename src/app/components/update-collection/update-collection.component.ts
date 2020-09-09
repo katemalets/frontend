@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Collection} from '../../interface/collection';
-import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CollectionService} from '../../services/collection.service';
 
 @Component({
   selector: 'app-update-collection',
@@ -12,7 +12,7 @@ export class UpdateCollectionComponent implements OnInit {
 
   collection: Collection;
 
-  constructor(private userService: UserService,
+  constructor(private collectionService: CollectionService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -25,7 +25,7 @@ export class UpdateCollectionComponent implements OnInit {
 
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(collectionId, 'collections/update/').subscribe(
+    this.collectionService.getCollection(collectionId, '/collections/update').subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
@@ -36,7 +36,7 @@ export class UpdateCollectionComponent implements OnInit {
   updateCollection() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     console.log(this.collection);
-    this.userService.updateCollection(id, this.collection)
+    this.collectionService.updateCollection(id, this.collection)
       .subscribe( data => {
         console.log('collection ' + this.collection.name + ' updated');
       });
@@ -44,6 +44,6 @@ export class UpdateCollectionComponent implements OnInit {
 
   onSubmit() {
     this.updateCollection();
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('account');
   }
 }

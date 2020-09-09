@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
 import {Collection} from '../../interface/collection';
+import {CollectionService} from '../../services/collection.service';
 
 @Component({
   selector: 'app-collection-list',
@@ -9,17 +9,17 @@ import {Collection} from '../../interface/collection';
 })
 export class CollectionListComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private collectionService: CollectionService) { }
 
-  url = 'collections';
-  collections: Array<Collection>;
+  url = '/collections';
+  collections: Collection;
 
   ngOnInit(): void {
     this.getCollections();
   }
 
   getCollections(): void {
-    this.userService.get(this.url).subscribe(data => {
+    this.collectionService.getCollections(this.url).subscribe(data => {
     //  console.log('Collections: ' + JSON.stringify(data));
       this.collections = data;
     });

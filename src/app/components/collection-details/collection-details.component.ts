@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {Collection} from '../../interface/collection';
 import {ActivatedRoute} from '@angular/router';
+import {CollectionService} from '../../services/collection.service';
 
 @Component({
   selector: 'app-collection-details',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CollectionDetailsComponent implements OnInit {
 
-  url = 'collections';
+  url = '/collections';
   collection: Collection;
   items: {
     id: number;
@@ -19,7 +20,7 @@ export class CollectionDetailsComponent implements OnInit {
     imageURL: string
   };
 
-  constructor(private userService: UserService,
+  constructor(private collectionService: CollectionService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class CollectionDetailsComponent implements OnInit {
 
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.userService.getOne(collectionId, this.url + '/').subscribe(
+    this.collectionService.getCollection(collectionId, this.url).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
