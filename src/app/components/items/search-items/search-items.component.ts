@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Item} from '../../interface/item';
+import {Item} from '../../../interface/item';
 import {ActivatedRoute} from '@angular/router';
-import {ItemService} from '../../services/item.service';
+import {ItemService} from '../../../services/item.service';
 
 @Component({
   selector: 'app-search-items',

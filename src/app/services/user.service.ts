@@ -12,7 +12,6 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // toDo create folder collection/items etc
   getUsers(url: string): Observable<User[]> {
     return this.httpClient.get<User[]>(API_URL + url);
   }

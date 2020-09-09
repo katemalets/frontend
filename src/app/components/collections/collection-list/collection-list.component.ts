@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Collection} from '../../interface/collection';
-import {CollectionService} from '../../services/collection.service';
+import {Collection} from '../../../interface/collection';
+import {CollectionService} from '../../../services/collection.service';
 
 @Component({
   selector: 'app-collection-list',

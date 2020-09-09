@@ -7,24 +7,24 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/security/register/register.component';
+import { LoginComponent } from './components/security/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminComponent } from './components/security/admin/admin.component';
 import {authInterceptorProviders} from './helpers/auth.interceptor.ts';
-import { CollectionListComponent } from './components/collection-list/collection-list.component';
-import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
-import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import { UpdateCollectionComponent } from './components/update-collection/update-collection.component';
-import { ItemListComponent } from './components/item-list/item-list.component';
-import { UpdateItemComponent } from './components/update-item/update-item.component';
-import { CreateItemComponent } from './components/create-item/create-item.component';
+import { CollectionListComponent } from './components/collections/collection-list/collection-list.component';
+import { CollectionDetailsComponent } from './components/collections/collection-details/collection-details.component';
+import { ItemDetailsComponent } from './components/items/item-details/item-details.component';
+import { UpdateCollectionComponent } from './components/collections/update-collection/update-collection.component';
+import { UpdateItemComponent } from './components/items/update-item/update-item.component';
+import { CreateItemComponent } from './components/items/create-item/create-item.component';
 import { SearchComponent } from './components/search/search.component';
-import { SearchItemsComponent } from './components/search-items/search-items.component';
+import { SearchItemsComponent } from './components/items/search-items/search-items.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { TagItemsComponent } from './components/tag-items/tag-items.component';
+import { TagItemsComponent } from './components/items/tag-items/tag-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -42,7 +42,6 @@ const routes: Routes = [
   { path: 'items/collections/:id', component: CreateItemComponent},
   { path: 'users/:id', component: HomeComponent},
   { path: 'items/search/:keyword', component: SearchItemsComponent},
-  { path: 'collections/list/:id', component: ItemListComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
@@ -57,7 +56,6 @@ const routes: Routes = [
     CollectionDetailsComponent,
     ItemDetailsComponent,
     UpdateCollectionComponent,
-    ItemListComponent,
     UpdateItemComponent,
     CreateItemComponent,
     SearchComponent,
@@ -65,16 +63,17 @@ const routes: Routes = [
     MainPageComponent,
     TagItemsComponent
   ],
-  imports: [
-    RouterModule.forRoot(routes),
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-  ],
+    imports: [
+        RouterModule.forRoot(routes),
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

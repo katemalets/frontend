@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../../services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Item} from '../../interface/item';
+import {Item} from '../../../interface/item';
 import {ActivatedRoute} from '@angular/router';
-import {ItemService} from '../../services/item.service';
+import {ItemService} from '../../../services/item.service';
 
 @Component({
   selector: 'app-create-item',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Item} from '../../interface/item';
-import {ItemService} from '../../services/item.service';
+import {Item} from '../../../interface/item';
+import {ItemService} from '../../../services/item.service';
 
 @Component({
   selector: 'app-update-item',

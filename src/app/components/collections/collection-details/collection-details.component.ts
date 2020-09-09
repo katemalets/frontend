@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Collection} from '../../interface/collection';
+import {Collection} from '../../../interface/collection';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CollectionService} from '../../services/collection.service';
-import {TokenStorageService} from '../../services/token-storage.service';
-import {User} from '../../interface/user';
+import {CollectionService} from '../../../services/collection.service';
+import {TokenStorageService} from '../../../services/token-storage.service';
+import {User} from '../../../interface/user';
 
 @Component({
   selector: 'app-collection-details',

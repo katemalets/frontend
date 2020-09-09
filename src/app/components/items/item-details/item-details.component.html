@@ -1,0 +1,24 @@
+<div class="detail-section">
+  <div class="container-fluid">
+    <img src="{{item.imageURL}}" class="detail-image">
+    <h3>{{item.name}}</h3>
+    <hr>
+    <button mat-icon-button>
+      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                routerLink="/items/update/{{item.id}}">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                (click)="deleteItem(item)">delete</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                routerLink="/items/collections/{{collection.id}}">add</mat-icon>
+    </button>
+    <h4>Description: </h4>
+    <p>{{item.description}}</p>
+  </div>
+</div>
+<div *ngFor="let tag of tags">
+  <p>{{tag.name}}</p>
+</div>

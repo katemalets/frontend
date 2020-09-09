@@ -3,11 +3,18 @@
     <img src="{{collection.imageURL}}" class="detail-image">
     <h3>{{collection.name}}</h3>
     <hr>
+  <button mat-icon-button>
     <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
               routerLink="/collections/update/{{collection.id}}">edit</mat-icon>
+  </button>
+    <button mat-icon-button>
     <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
               (click)="deleteCollection(collection)">delete</mat-icon>
-
+    </button>
+    <button mat-icon-button>
+      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                routerLink="/items/collections/{{collection.id}}">add</mat-icon>
+    </button>
     <h4>Description: </h4>
     <p>{{collection.description}}</p>
     <a routerLink="/collections" class="mt-5">Back to collections</a>

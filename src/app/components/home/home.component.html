@@ -1,6 +1,8 @@
 <h3> Your name:  {{user.username}} </h3>
 <h3> Email: {{user.email}} </h3>
-
+<button mat-icon-button>
+  <mat-icon routerLink="/collections">add</mat-icon>
+</button>
 <div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
@@ -10,11 +12,8 @@
             <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
             <h1>{{collection.name}}</h1>
           </a>
-<!--          <div class="btn-group" role="group" aria-label="Basic example">-->
-<!--            <button routerLink="/collections" type="button" class="btn btn-light">Add collection</button>-->
-<!--            <button routerLink="/collections/update/{{collection.id}}" type="button" class="btn btn-light">Edit collection</button>-->
-<!--            <button (click)="deleteCollection(collection)" type="button" class="btn btn-light">Delete collection</button>-->
-<!--            <button routerLink="/collections/list/{{collection.id}}" type="button" class="btn btn-light">Change Items</button>-->
+<!--
+            <button routerLink="/collections/list/{{collection.id}}" type="button" class="btn btn-light">Change Items</button>-->
 <!--            <button routerLink="/items/collections/{{collection.id}}" type="button" class="btn btn-light">Create item</button>-->
 <!--          </div>-->
         </div>

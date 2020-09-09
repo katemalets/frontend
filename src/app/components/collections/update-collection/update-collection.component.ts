@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Collection} from '../../interface/collection';
+import {Collection} from '../../../interface/collection';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CollectionService} from '../../services/collection.service';
+import {CollectionService} from '../../../services/collection.service';
 
 @Component({
   selector: 'app-update-collection',

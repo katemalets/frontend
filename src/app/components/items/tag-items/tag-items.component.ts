@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Tag} from '../../interface/tag';
+import {Tag} from '../../../interface/tag';
 import {ActivatedRoute} from '@angular/router';
-import {CollectionService} from '../../services/collection.service';
+import {CollectionService} from '../../../services/collection.service';
 
 @Component({
   selector: 'app-tag-items',
