@@ -16,16 +16,16 @@ export class CollectionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTopCollections(amount: number, url: string): Observable<Collection>{
-    return  this.httpClient.get<Collection>(API_URL + url + '/' + amount);
+  getTopCollections(amount: number, url: string): Observable<Collection[]>{
+    return  this.httpClient.get<Collection[]>(API_URL + url + '/' + amount);
   }
 
   getCollection(id: number, url: string): Observable<Collection> {
     return this.httpClient.get<Collection>(API_URL + url + '/' + id);
   }
 
-  getCollections(url: string): Observable<Collection> {
-    return this.httpClient.get<Collection>(API_URL + url);
+  getCollections(url: string): Observable<Collection[]> {
+    return this.httpClient.get<Collection[]>(API_URL + url);
   }
 
   deleteCollection(collection) {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
 import {Collection} from '../../interface/collection';
 import {Item} from '../../interface/item';
 import {Tag} from '../../interface/tag';
@@ -18,9 +17,9 @@ export class MainPageComponent implements OnInit {
               private itemService: ItemService,
               private tagService: TagService) { }
 
-  collections: Collection;
-  items: Item;
-  tags: Tag;
+  collections: Collection[];
+  items: Item[];
+  tags: Tag[];
   maxCollectionsNumber = 6;
   maxItemsNumber = 6;
   url = '/top';

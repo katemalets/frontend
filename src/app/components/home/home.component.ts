@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
 
   url = 'users';
   user: User;
+  tokenUserId: number;
   userId: number;
-  id: number;
   collections: {
     name: string;
     topic: string;
@@ -36,24 +36,16 @@ export class HomeComponent implements OnInit {
   }
 
   private handleUserDetails() {
-    this.userId = this.token.getUser().id;
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.tokenUserId = this.token.getUser().id;
+    this.userId = +this.route.snapshot.paramMap.get('id');
     // tslint:disable-next-line:triple-equals
-    if (this.id !== 0){
-      this.userId = this.id;
+    if (this.userId !== 0){
+      this.tokenUserId = this.userId;
     }
-    this.userService.getOne(this.userId, this.url + '/').subscribe(
+    this.userService.getUser(this.tokenUserId).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.user = data;
-      }
-    );
-  }
-
-  deleteCollection(collection: Collection): void{
-    this.collectionService.deleteCollection(collection).subscribe(data => {
-      console.log('Deleting collection: ' + collection.name);
-      this.handleUserDetails();
       }
     );
   }

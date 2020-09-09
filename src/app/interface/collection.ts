@@ -4,6 +4,7 @@ export interface Collection {
   topic: string;
   imageURL: string;
   description: string;
+  user: number;
   items: {
     id: number;
     name: string;

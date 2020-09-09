@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  users: Array<User>;
+  users: User[];
   authorities: {
     id: number;
     authority: string
@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.get('admin').subscribe(data => {
+    this.userService.getUsers('/admin').subscribe(data => {
       this.users = data;
       for (const user of this.users) {
         this.authorities = user.authorities;

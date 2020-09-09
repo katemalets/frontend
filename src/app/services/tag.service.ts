@@ -12,7 +12,7 @@ export class TagService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTags(url: string): Observable<Tag>{
-    return this.httpClient.get<Tag>(API_URL + url);
+  getTags(url: string): Observable<Tag[]>{
+    return this.httpClient.get<Tag[]>(API_URL + url);
   }
 }

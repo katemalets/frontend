@@ -15,7 +15,6 @@ import {authInterceptorProviders} from './helpers/auth.interceptor.ts';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UpdateCollectionComponent } from './components/update-collection/update-collection.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { UpdateItemComponent } from './components/update-item/update-item.component';
@@ -24,6 +23,8 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchItemsComponent } from './components/search-items/search-items.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { TagItemsComponent } from './components/tag-items/tag-items.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -55,7 +56,6 @@ const routes: Routes = [
     CollectionListComponent,
     CollectionDetailsComponent,
     ItemDetailsComponent,
-    UserDetailsComponent,
     UpdateCollectionComponent,
     ItemListComponent,
     UpdateItemComponent,
@@ -65,14 +65,16 @@ const routes: Routes = [
     MainPageComponent,
     TagItemsComponent
   ],
-    imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
-        ReactiveFormsModule,
-    ],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

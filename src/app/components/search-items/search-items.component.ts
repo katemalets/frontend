@@ -11,7 +11,7 @@ import {ItemService} from '../../services/item.service';
 export class SearchItemsComponent implements OnInit {
 
   url: 'items';
-  items: Item;
+  items: Item[];
   searchMode = false;
 
   constructor(private itemService: ItemService,

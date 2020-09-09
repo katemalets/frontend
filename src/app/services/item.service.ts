@@ -17,12 +17,12 @@ export class ItemService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getLastItems(amount: number, url: string): Observable<Item>{
-    return this.httpClient.get<Item>(API_URL + url + '/' + amount);
+  getLastItems(amount: number, url: string): Observable<Item[]>{
+    return this.httpClient.get<Item[]>(API_URL + url + '/' + amount);
   }
 
-  getItems(url: string): Observable<Item>{
-    return this.httpClient.get<Item>(API_URL + url + '/');
+  getItems(url: string): Observable<Item[]>{
+    return this.httpClient.get<Item[]>(API_URL + url + '/');
   }
 
   getItem(itemId: number, url: string): Observable<Item> {
@@ -41,7 +41,7 @@ export class ItemService {
     return this.httpClient.post(API_URL + '/items/collections' + '/' + id , item);
   }
 
-  searchItems(keyword: string): Observable<Item> {
-    return this.httpClient.get<Item>(API_URL + '/items/search' + '/' + keyword);
+  searchItems(keyword: string): Observable<Item[]> {
+    return this.httpClient.get<Item[]>(API_URL + '/items/search' + '/' + keyword);
   }
 }

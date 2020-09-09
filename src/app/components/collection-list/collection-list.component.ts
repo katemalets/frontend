@@ -12,7 +12,7 @@ export class CollectionListComponent implements OnInit {
   constructor(private collectionService: CollectionService) { }
 
   url = '/collections';
-  collections: Collection;
+  collections: Collection[];
 
   ngOnInit(): void {
     this.getCollections();

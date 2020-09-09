@@ -3,6 +3,11 @@
     <img src="{{collection.imageURL}}" class="detail-image">
     <h3>{{collection.name}}</h3>
     <hr>
+    <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+              routerLink="/collections/update/{{collection.id}}">edit</mat-icon>
+    <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+              (click)="deleteCollection(collection)">delete</mat-icon>
+
     <h4>Description: </h4>
     <p>{{collection.description}}</p>
     <a routerLink="/collections" class="mt-5">Back to collections</a>
