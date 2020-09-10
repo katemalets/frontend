@@ -44,4 +44,12 @@ export class ItemService {
   searchItems(keyword: string): Observable<Item[]> {
     return this.httpClient.get<Item[]>(API_URL + '/items/search' + '/' + keyword);
   }
+
+  likeItem(item) {
+    return this.httpClient.put(API_URL + '/items/like' + '/' + item.id, item);
+  }
+
+  dislikeItem(item) {
+    return this.httpClient.put(API_URL + '/items/dislike' + '/' + item.id, item);
+  }
 }

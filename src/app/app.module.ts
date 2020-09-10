@@ -25,6 +25,8 @@ import { TagItemsComponent } from './components/items/tag-items/tag-items.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -63,17 +65,19 @@ const routes: Routes = [
     MainPageComponent,
     TagItemsComponent
   ],
-    imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule,
-        HttpClientModule,
-        FormsModule,
-        CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatButtonModule,
-    ],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

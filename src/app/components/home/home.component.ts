@@ -3,7 +3,6 @@ import {UserService} from '../../services/user.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../interface/user';
-import {Collection} from '../../interface/collection';
 import {CollectionService} from '../../services/collection.service';
 
 @Component({

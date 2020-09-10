@@ -85,4 +85,18 @@ export class ItemDetailsComponent implements OnInit {
       }
     );
   }
+
+  likeItem(item: Item): void{
+    this.itemService.likeItem(item).subscribe(data => {
+      console.log('Liked item : ' + item.name);
+      this.handleItemDetails();
+    });
+  }
+
+  dislikeItem(item: Item): void{
+    this.itemService.dislikeItem(item).subscribe(data => {
+      console.log('Disliked item : ' + item.name);
+      this.handleItemDetails();
+    });
+  }
 }

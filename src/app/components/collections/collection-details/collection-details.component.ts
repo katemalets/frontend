@@ -36,6 +36,7 @@ export class CollectionDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
       this.handleCollectionDetails();
     });
+    console.log(this.tokenUserId);
   }
 
   private handleCollectionDetails() {
@@ -68,5 +69,13 @@ export class CollectionDetailsComponent implements OnInit {
         this.router.navigateByUrl('collections');
       }
     );
+  }
+
+  addCollection(collection: Collection): void{
+    this.collectionService.addCollection(collection, this.collection.id).subscribe( data => {
+      console.log('Adding collection ' + collection.name);
+      this.handleCollectionDetails();
+      this.router.navigateByUrl('collections');
+    });
   }
 }

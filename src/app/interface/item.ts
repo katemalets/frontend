@@ -4,6 +4,7 @@ export interface Item {
   description: string;
   imageURL: string;
   collection: number;
+  likesNumber: number;
   tags: {
     id: number;
     name: string

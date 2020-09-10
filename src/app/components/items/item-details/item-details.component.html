@@ -13,7 +13,12 @@
     </button>
     <button mat-icon-button>
       <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-                routerLink="/items/collections/{{collection.id}}">add</mat-icon>
+      (click)="likeItem(item)">favorite</mat-icon>
+    </button>
+    {{item.likesNumber}}
+    <button mat-icon-button>
+      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                (click)="dislikeItem(item)">favorite_border</mat-icon>
     </button>
     <h4>Description: </h4>
     <p>{{item.description}}</p>

@@ -35,4 +35,8 @@ export class CollectionService {
   updateCollection(id: number, value: any): Observable<Collection> {
     return this.httpClient.put<Collection>(API_URL + '/collections' + '/' + id, value, httpOptions);
   }
+
+  addCollection(collection, id: number) {
+    return this.httpClient.post(API_URL + '/collections' + '/' + id, collection);
+  }
 }
