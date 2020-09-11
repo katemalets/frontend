@@ -11,7 +11,7 @@ import { RegisterComponent } from './components/security/register/register.compo
 import { LoginComponent } from './components/security/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/security/admin/admin.component';
-import {authInterceptorProviders} from './helpers/auth.interceptor.ts';
+import { authInterceptorProviders } from './helpers/auth.interceptor.ts';
 import { CollectionListComponent } from './components/collections/collection-list/collection-list.component';
 import { CollectionDetailsComponent } from './components/collections/collection-details/collection-details.component';
 import { ItemDetailsComponent } from './components/items/item-details/item-details.component';
@@ -23,10 +23,11 @@ import { SearchItemsComponent } from './components/items/search-items/search-ite
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { TagItemsComponent } from './components/items/tag-items/tag-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { TagCloudModule } from 'angular-tag-cloud-module';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -77,6 +78,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+    TagCloudModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

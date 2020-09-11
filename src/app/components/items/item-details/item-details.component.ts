@@ -5,6 +5,8 @@ import {ItemService} from '../../../services/item.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {Collection} from '../../../interface/collection';
 import {CollectionService} from '../../../services/collection.service';
+import {User} from '../../../interface/user';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-item-details',
@@ -18,6 +20,16 @@ export class ItemDetailsComponent implements OnInit {
   authorities: string[];
   collectionId: number;
   collection: Collection;
+ // flagLike = false;
+  currentUser: User;
+  likedItems: {
+    id: number;
+    name: string;
+    description: string;
+    imageURL: string;
+    collection: number;
+    likesNumber: number;
+  };
   url = '/items';
   item: Item;
   tags: {
@@ -27,16 +39,19 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor(private itemService: ItemService,
               private tokenService: TokenStorageService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
               private collectionService: CollectionService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.tokenService.getUser();
     if (this.tokenService.getToken()){
       this.tokenUserId = this.tokenService.getUser().id;
     }
     this.route.paramMap.subscribe(() => {
       this.handleItemDetails();
+      this.handleUserDetails();
     });
   }
 
@@ -65,6 +80,15 @@ export class ItemDetailsComponent implements OnInit {
     );
   }
 
+  private handleUserDetails() {
+    this.userService.getUser(this.currentUser.id).subscribe(
+      data => {
+        //  console.log(('Data: ' + JSON.stringify(data)));
+        this.currentUser = data;
+        this.likedItems = this.currentUser.likedItems;
+      });
+  }
+
   private checkAuthority(){
     this.authorities = this.tokenService.getUser().authorities;
     for (const authority of this.authorities) {
@@ -76,7 +100,6 @@ export class ItemDetailsComponent implements OnInit {
     }
   }
 
-
   deleteItem(item: Item): void{
     this.itemService.deleteItem(item).subscribe(data => {
         console.log('Deleting item: ' + item.name);
@@ -86,17 +109,20 @@ export class ItemDetailsComponent implements OnInit {
     );
   }
 
-  likeItem(item: Item): void{
-    this.itemService.likeItem(item).subscribe(data => {
+  likeItem(item: Item): void {
+    console.log('Id of liked person:' + this.tokenUserId);
+    this.itemService.likeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Liked item : ' + item.name);
       this.handleItemDetails();
+      //this.flagLike = true;
     });
   }
 
   dislikeItem(item: Item): void{
-    this.itemService.dislikeItem(item).subscribe(data => {
+    this.itemService.dislikeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
+     // this.flagLike = false;
     });
   }
 }

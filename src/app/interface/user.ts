@@ -13,4 +13,12 @@ export interface User {
     topic: string;
     imageURL: string
   };
+  likedItems: {
+    id: number;
+    name: string;
+    description: string;
+    imageURL: string;
+    collection: number;
+    likesNumber: number;
+  };
 }

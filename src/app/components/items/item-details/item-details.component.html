@@ -3,23 +3,22 @@
     <img src="{{item.imageURL}}" class="detail-image">
     <h3>{{item.name}}</h3>
     <hr>
-    <button mat-icon-button>
-      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-                routerLink="/items/update/{{item.id}}">edit</mat-icon>
+    <button mat-icon-button *ngIf="collection.user == tokenUserId || collection.user == userId">
+      <mat-icon routerLink="/items/update/{{item.id}}">edit</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-                (click)="deleteItem(item)">delete</mat-icon>
+    <button mat-icon-button *ngIf="collection.user == tokenUserId || collection.user == userId">
+      <mat-icon (click)="deleteItem(item)">delete</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-      (click)="likeItem(item)">favorite</mat-icon>
+    <button mat-icon-button >
+      <mat-icon *ngIf="tokenUserId != null"
+      (click)="dislikeItem(item)">favorite_border</mat-icon>
     </button>
-    {{item.likesNumber}}
-    <button mat-icon-button>
-      <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-                (click)="dislikeItem(item)">favorite_border</mat-icon>
+    <button mat-icon-button >
+      <mat-icon *ngIf="tokenUserId != null"
+                (click)="likeItem(item)">favorite</mat-icon>
     </button>
+    <span *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
+
     <h4>Description: </h4>
     <p>{{item.description}}</p>
   </div>

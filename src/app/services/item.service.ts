@@ -45,11 +45,11 @@ export class ItemService {
     return this.httpClient.get<Item[]>(API_URL + '/items/search' + '/' + keyword);
   }
 
-  likeItem(item) {
-    return this.httpClient.put(API_URL + '/items/like' + '/' + item.id, item);
+  likeItem(item, userId: number) {
+    return this.httpClient.put(API_URL + '/items' + '/' + userId + '/like' + '/' + item.id, item);
   }
 
-  dislikeItem(item) {
-    return this.httpClient.put(API_URL + '/items/dislike' + '/' + item.id, item);
+  dislikeItem(item, userId: number) {
+    return this.httpClient.put(API_URL + '/items' + '/' + userId + '/dislike' + '/' + item.id, item);
   }
 }
