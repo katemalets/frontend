@@ -4,6 +4,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../interface/user';
 import {CollectionService} from '../../services/collection.service';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -23,15 +24,22 @@ export class HomeComponent implements OnInit {
     description: string
   };
 
+  message: string;
+
   constructor(private userService: UserService,
               private collectionService: CollectionService,
               private route: ActivatedRoute,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService,
+              private data: DataService) {
+    this.data.currentMessage.subscribe(message => this.message = message);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.handleUserDetails();
     });
+    this.data.currentMessage.subscribe(message => this.message = message);
+    this.newMessage();
   }
 
   private handleUserDetails() {
@@ -47,5 +55,9 @@ export class HomeComponent implements OnInit {
         this.user = data;
       }
     );
+  }
+
+  newMessage() {
+    this.data.changeMessage(this.route.snapshot.paramMap.get('id'));
   }
 }

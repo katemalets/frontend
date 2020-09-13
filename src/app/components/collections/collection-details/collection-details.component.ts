@@ -3,7 +3,7 @@ import {Collection} from '../../../interface/collection';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../../services/collection.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
-import {User} from '../../../interface/user';
+import {DataService} from '../../../services/data.service';
 
 @Component({
   selector: 'app-collection-details',
@@ -24,10 +24,17 @@ export class CollectionDetailsComponent implements OnInit {
     imageURL: string
   };
 
+  message: string;
+  currentId: number;
+
   constructor(private collectionService: CollectionService,
               private tokenService: TokenStorageService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private data: DataService)
+  {
+    this.data.currentMessage.subscribe(message => this.message = message);
+  }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()){
@@ -37,13 +44,15 @@ export class CollectionDetailsComponent implements OnInit {
       this.handleCollectionDetails();
     });
     console.log(this.tokenUserId);
+    this.data.currentMessage.subscribe(message => this.message = message);
+    console.log('current user ' + this.message);
+    this.currentId = +this.message;
   }
 
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
     this.collectionService.getCollection(collectionId, this.url).subscribe(
       data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
         this.items = this.collection.items;
         this.checkAuthority();
@@ -72,10 +81,12 @@ export class CollectionDetailsComponent implements OnInit {
   }
 
   addCollection(collection: Collection): void{
-    this.collectionService.addCollection(collection, this.collection.id).subscribe( data => {
-      console.log('Adding collection ' + collection.name);
+    console.log('Adding collection ' + collection.name);
+    this.collectionService.addCollection(this.collection.id, this.currentId).subscribe( data => {
+      console.log('For user : ' + this.userId);
+      console.log('Token user: ' + this.tokenUserId);
       this.handleCollectionDetails();
-      this.router.navigateByUrl('collections');
+      this.router.navigateByUrl('account');
     });
   }
 }

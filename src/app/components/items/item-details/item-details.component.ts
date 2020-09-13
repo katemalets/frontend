@@ -20,9 +20,11 @@ export class ItemDetailsComponent implements OnInit {
   authorities: string[];
   collectionId: number;
   collection: Collection;
- // flagLike = false;
   currentUser: User;
-  likedItems: {
+  userLiked: boolean;
+  url = '/items';
+  item: Item;
+  items: {
     id: number;
     name: string;
     description: string;
@@ -30,8 +32,6 @@ export class ItemDetailsComponent implements OnInit {
     collection: number;
     likesNumber: number;
   };
-  url = '/items';
-  item: Item;
   tags: {
     id: number;
     name: string
@@ -51,7 +51,6 @@ export class ItemDetailsComponent implements OnInit {
     }
     this.route.paramMap.subscribe(() => {
       this.handleItemDetails();
-      this.handleUserDetails();
     });
   }
 
@@ -63,7 +62,7 @@ export class ItemDetailsComponent implements OnInit {
         this.item = data;
         this.tags = this.item.tags;
         this.collectionId = this.item.collection;
-        console.log('collectionId = ' + this.collectionId);
+        this.userLiked = this.item.userLiked;
         this.handleCollectionDetails(this.collectionId);
       }
     );
@@ -78,15 +77,6 @@ export class ItemDetailsComponent implements OnInit {
         this.checkAuthority();
       }
     );
-  }
-
-  private handleUserDetails() {
-    this.userService.getUser(this.currentUser.id).subscribe(
-      data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
-        this.currentUser = data;
-        this.likedItems = this.currentUser.likedItems;
-      });
   }
 
   private checkAuthority(){
@@ -108,13 +98,12 @@ export class ItemDetailsComponent implements OnInit {
       }
     );
   }
-
+ //toDo resolve like system!
   likeItem(item: Item): void {
     console.log('Id of liked person:' + this.tokenUserId);
     this.itemService.likeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Liked item : ' + item.name);
       this.handleItemDetails();
-      //this.flagLike = true;
     });
   }
 
@@ -122,7 +111,6 @@ export class ItemDetailsComponent implements OnInit {
     this.itemService.dislikeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
-     // this.flagLike = false;
     });
   }
 }

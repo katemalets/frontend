@@ -36,7 +36,7 @@ export class CollectionService {
     return this.httpClient.put<Collection>(API_URL + '/collections' + '/' + id, value, httpOptions);
   }
 
-  addCollection(collection, id: number) {
-    return this.httpClient.post(API_URL + '/collections' + '/' + id, collection);
+  addCollection(collectionId: number, userId: number) {
+    return this.httpClient.get(API_URL + '/collections/' + collectionId + '/' + userId);
   }
 }
