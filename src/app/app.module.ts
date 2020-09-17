@@ -4,7 +4,7 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes} from '@angular/router';
+import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/security/register/register.component';
@@ -28,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TagCloudModule } from 'angular-tag-cloud-module';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule} from '@angular/cdk/drag-drop';
+import { CreateTagComponent } from './components/items/create-tag/create-tag.component';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'items', component: SearchItemsComponent},
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
+  { path: 'tags/create', component: CreateTagComponent},
+  //toDo instead of ItemDetailsComponent put TagItemsComponent!
   { path: 'tags/:id', component: TagItemsComponent},
   { path: 'users/:id', component: HomeComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
@@ -66,6 +69,7 @@ const routes: Routes = [
     SearchItemsComponent,
     MainPageComponent,
     TagItemsComponent,
+    CreateTagComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

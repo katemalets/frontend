@@ -17,12 +17,12 @@
       <input type="text" class="form-control" id="description" required [(ngModel)]="item.description" name="description">
     </div>
 
-<!--    <label for="name">Tag names :</label>-->
-<!--    <div *ngFor="let tag of tags">-->
-<!--    <div class="form-group">-->
-<!--      <input type="text" class="form-control" id="{{tag.id}}" required [(ngModel)]="tag.name" name="{{tag.name}}">-->
-<!--    </div>-->
-<!--    </div>-->
+    <label for="name">Tag names :</label>
+    <div *ngFor="let tag of tags">
+    <div class="form-group">
+      <input type="text" class="form-control" id="{{tag.id}}" required [(ngModel)]="tag.name" name="{{tag.name}}">
+    </div>
+    </div>
 
     <button type="submit" class="btn btn-success">Submit</button>
   </form>

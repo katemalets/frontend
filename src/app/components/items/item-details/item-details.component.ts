@@ -7,6 +7,9 @@ import {Collection} from '../../../interface/collection';
 import {CollectionService} from '../../../services/collection.service';
 import {User} from '../../../interface/user';
 import {UserService} from '../../../services/user.service';
+import {Tag} from '../../../interface/tag';
+import {TagService} from '../../../services/tag.service';
+import {concat} from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
@@ -36,6 +39,7 @@ export class ItemDetailsComponent implements OnInit {
   constructor(private itemService: ItemService,
               private tokenService: TokenStorageService,
               private userService: UserService,
+              private tagService: TagService,
               private route: ActivatedRoute,
               private router: Router,
               private collectionService: CollectionService) { }
@@ -124,6 +128,13 @@ export class ItemDetailsComponent implements OnInit {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
     //  this.handleUserDetails();
+    });
+  }
+
+  deleteTag(tag: Tag): void{
+    this.tagService.deleteTag(tag.id, this.item.id).subscribe(data => {
+      console.log('Deleting tag' + tag.name);
+      this.handleItemDetails();
     });
   }
 }

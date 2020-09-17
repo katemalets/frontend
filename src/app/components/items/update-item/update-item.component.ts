@@ -12,6 +12,10 @@ import {ItemService} from '../../../services/item.service';
 export class UpdateItemComponent implements OnInit {
 
   item: Item;
+  tags: {
+    id: number;
+    name: string
+  };
 
   constructor(private itemService: ItemService,
               private route: ActivatedRoute,
@@ -30,6 +34,7 @@ export class UpdateItemComponent implements OnInit {
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
+        this.tags = this.item.tags;
       }
     );
   }

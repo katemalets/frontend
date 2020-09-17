@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../../services/user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Item} from '../../../interface/item';
 import {ActivatedRoute} from '@angular/router';
@@ -12,7 +11,7 @@ import {ItemService} from '../../../services/item.service';
 })
 export class CreateItemComponent implements OnInit {
 
-  item: Item = undefined;
+  item: Item;
   myForm: FormGroup;
 
   constructor(private itemService: ItemService,

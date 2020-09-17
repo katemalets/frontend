@@ -15,4 +15,8 @@ export class TagService {
   getTags(url: string): Observable<Tag[]>{
     return this.httpClient.get<Tag[]>(API_URL + url);
   }
+
+  deleteTag(tagId: number, itemId: number) {
+    return this.httpClient.delete(API_URL + '/tags' + '/' + tagId + '/items' + '/' + itemId);
+  }
 }
