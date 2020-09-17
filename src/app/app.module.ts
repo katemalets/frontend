@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TagCloudModule } from 'angular-tag-cloud-module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -40,10 +41,10 @@ const routes: Routes = [
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
   { path: 'tags/:id', component: TagItemsComponent},
+  { path: 'users/:id', component: HomeComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
   { path: 'items/update/:id', component: UpdateItemComponent},
   { path: 'items/collections/:id', component: CreateItemComponent},
-  { path: 'users/:id', component: HomeComponent},
   { path: 'items/search/:keyword', component: SearchItemsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
@@ -64,7 +65,7 @@ const routes: Routes = [
     SearchComponent,
     SearchItemsComponent,
     MainPageComponent,
-    TagItemsComponent
+    TagItemsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -78,7 +79,8 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    TagCloudModule
+    TagCloudModule,
+    DragDropModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

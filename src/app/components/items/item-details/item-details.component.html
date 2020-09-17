@@ -3,21 +3,22 @@
     <img src="{{item.imageURL}}" class="detail-image">
     <h3>{{item.name}}</h3>
     <hr>
-    <button mat-icon-button *ngIf="collection.user == tokenUserId || collection.user == userId">
+    <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
       <mat-icon routerLink="/items/update/{{item.id}}">edit</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="collection.user == tokenUserId || collection.user == userId">
+    <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
       <mat-icon (click)="deleteItem(item)">delete</mat-icon>
     </button>
     <button mat-icon-button >
       <mat-icon *ngIf="tokenUserId != null"
-      (click)="dislikeItem(item)">favorite_border</mat-icon>
+                (click)="dislikeItem(item)">favorite_border</mat-icon>
     </button>
     <button mat-icon-button>
       <mat-icon *ngIf="tokenUserId != null"
                 (click)="likeItem(item)">favorite</mat-icon>
     </button>
     <span *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
+
 
     <h4>Description: </h4>
     <p>{{item.description}}</p>
@@ -26,3 +27,44 @@
 <div *ngFor="let tag of tags">
   <p>{{tag.name}}</p>
 </div>
+
+
+<!--    <div *ngIf="item.id !== null;then like else dislike"></div>-->
+<!--    <ng-template #like>-->
+<!--      false-->
+<!--    </ng-template>-->
+<!--    <ng-template #dislike>-->
+<!--    <div *ngFor="let itemCurr of likedItems">-->
+<!--       <div *ngIf="itemCurr.id === item.id;then dislike"></div>-->
+<!--            <ng-template #dislike>-->
+<!--              true-->
+<!--            </ng-template>-->
+<!--          </div>-->
+<!--    </ng-template>-->
+
+
+<!--    <div *ngFor="let itemCurr of likedItems">-->
+<!--      <div *ngIf="itemCurr.id === item.id;then like"></div>-->
+<!--      <ng-template #like>-->
+<!--        true-->
+<!--      </ng-template>-->
+<!--    </div>-->
+
+<!--    <div *ngFor="let itemCur of likedItems">-->
+<!--      <div *ngIf="!(itemCur.id === item.id);then dislike"></div>-->
+<!--      <ng-template #dislike>-->
+<!--        false-->
+<!--      </ng-template>-->
+<!--    </div>-->
+
+
+<!--<div *ngFor="let itemCur of items">-->
+<!--      <div *ngIf="itemCur.id === item.id;then content"></div>-->
+<!--      <ng-template #content>-->
+<!--        <div *ngIf="likedItems;then like"></div>-->
+<!--          <ng-template #like>-->
+
+<!--          </ng-template>-->
+<!--      </ng-template>-->
+<!--</div>-->
+

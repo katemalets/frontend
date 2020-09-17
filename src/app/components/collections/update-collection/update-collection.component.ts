@@ -44,6 +44,5 @@ export class UpdateCollectionComponent implements OnInit {
 
   onSubmit() {
     this.updateCollection();
-    this.router.navigateByUrl('account');
   }
 }

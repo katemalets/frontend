@@ -37,8 +37,10 @@ export class UpdateItemComponent implements OnInit {
   updateItem() {
     const id: number = +this.route.snapshot.paramMap.get('id');
     console.log(this.item);
+    console.log('trying to change item');
     this.itemService.updateItem(id, this.item)
       .subscribe( data => {
+
         console.log(this.item);
       });
   }

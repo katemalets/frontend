@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {User} from '../../interface/user';
 import {CollectionService} from '../../services/collection.service';
 import {DataService} from '../../services/data.service';
+import {Collection} from '../../interface/collection';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +54,14 @@ export class HomeComponent implements OnInit {
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.user = data;
+      }
+    );
+  }
+
+  deleteCollection(collection: Collection): void{
+    this.collectionService.deleteCollection(collection).subscribe(data => {
+        console.log('Deleting collection: ' + collection.name);
+        this.handleUserDetails();
       }
     );
   }

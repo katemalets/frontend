@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
         if (this.tokenService.getUser().id === user.id){
           console.log('------> equals!!!');
           this.tokenService.signOut();
-          this.router.navigateByUrl('main');
+          this.router.navigateByUrl('home');
         } else {
           console.log('Everything is okey');
           this.users = this.users.filter(u => u !== user);
@@ -59,7 +59,7 @@ export class AdminComponent implements OnInit {
         if (this.tokenService.getUser().id === user.id){
           console.log('------> equals!!!');
           this.tokenService.signOut();
-          this.router.navigateByUrl('main');
+          this.router.navigateByUrl('home');
         } else {
           console.log('Everything is okey');
           this.getUsers();

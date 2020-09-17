@@ -12,7 +12,13 @@
             <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
             <h1>{{collection.name}}</h1>
           </a>
-
+          <button mat-icon-button>
+            <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
+                      (click)="deleteCollection(collection)">delete</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
+          </button>
         </div>
     </div>
   </div>

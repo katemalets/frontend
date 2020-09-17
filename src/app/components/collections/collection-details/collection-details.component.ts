@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../../services/collection.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
 import {DataService} from '../../../services/data.service';
+import {Item} from '../../../interface/item';
+import {ItemService} from '../../../services/item.service';
 
 @Component({
   selector: 'app-collection-details',
@@ -17,6 +19,7 @@ export class CollectionDetailsComponent implements OnInit {
   authorities: string[];
   url = '/collections';
   collection: Collection;
+  item: Item;
   items: {
     id: number;
     name: string;
@@ -29,6 +32,7 @@ export class CollectionDetailsComponent implements OnInit {
 
   constructor(private collectionService: CollectionService,
               private tokenService: TokenStorageService,
+              private itemService: ItemService,
               private route: ActivatedRoute,
               private router: Router,
               private data: DataService)
@@ -45,7 +49,7 @@ export class CollectionDetailsComponent implements OnInit {
     });
     console.log(this.tokenUserId);
     this.data.currentMessage.subscribe(message => this.message = message);
-    console.log('current user ' + this.message);
+    console.log('current user (not from admin if null!) ' + this.message);
     this.currentId = +this.message;
   }
 
@@ -65,7 +69,7 @@ export class CollectionDetailsComponent implements OnInit {
     for (const authority of this.authorities) {
       if (authority === 'ROLE_ADMIN') {
         console.log(authority);
-        this.userId = this.collection.user;
+        this.userId = this.collection.userId;
         console.log('userId = ' + this.userId);
       }
     }
@@ -82,11 +86,34 @@ export class CollectionDetailsComponent implements OnInit {
 
   addCollection(collection: Collection): void{
     console.log('Adding collection ' + collection.name);
+    if (this.currentId === 0){
+      this.currentId = this.tokenUserId;
+    }
     this.collectionService.addCollection(this.collection.id, this.currentId).subscribe( data => {
       console.log('For user : ' + this.userId);
       console.log('Token user: ' + this.tokenUserId);
       this.handleCollectionDetails();
       this.router.navigateByUrl('account');
     });
+  }
+
+  private handleItemDetails() {
+    const itemId: number = +this.route.snapshot.paramMap.get('id');
+    this.itemService.getItem(itemId, this.url).subscribe(
+      data => {
+        //  console.log(('Data: ' + JSON.stringify(data)));
+        this.item = data;
+        this.handleCollectionDetails();
+      }
+    );
+  }
+
+  deleteItem(item: Item): void{
+    this.itemService.deleteItem(item).subscribe(data => {
+        console.log('Deleting item: ' + item.name);
+        this.handleItemDetails();
+        this.router.navigateByUrl('/collections' + '/' + this.collection.id);
+      }
+    );
   }
 }

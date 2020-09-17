@@ -21,20 +21,16 @@ export class ItemDetailsComponent implements OnInit {
   collectionId: number;
   collection: Collection;
   currentUser: User;
-  userLiked: boolean;
   url = '/items';
   item: Item;
-  items: {
-    id: number;
-    name: string;
-    description: string;
-    imageURL: string;
-    collection: number;
-    likesNumber: number;
-  };
+  items: Item[];
   tags: {
     id: number;
     name: string
+  };
+  likedItems: {
+    id: number;
+    name: string;
   };
 
   constructor(private itemService: ItemService,
@@ -49,9 +45,8 @@ export class ItemDetailsComponent implements OnInit {
     if (this.tokenService.getToken()){
       this.tokenUserId = this.tokenService.getUser().id;
     }
-    this.route.paramMap.subscribe(() => {
-      this.handleItemDetails();
-    });
+    this.handleItemDetails();
+    //this.handleUserDetails();
   }
 
   private handleItemDetails() {
@@ -61,11 +56,15 @@ export class ItemDetailsComponent implements OnInit {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
         this.tags = this.item.tags;
-        this.collectionId = this.item.collection;
-        this.userLiked = this.item.userLiked;
+        this.collectionId = this.item.collectionId;
         this.handleCollectionDetails(this.collectionId);
       }
     );
+    this.itemService.getItems('/items').subscribe(
+      data => {
+        this.items = data;
+      }
+      );
   }
 
   private handleCollectionDetails(collectionId: number) {
@@ -79,12 +78,24 @@ export class ItemDetailsComponent implements OnInit {
     );
   }
 
+  // private handleUserDetails() {
+  //   this.userService.getUser(this.tokenUserId).subscribe(
+  //     data => {
+  //       this.currentUser = data;
+  //       console.log('current user: ' + this.currentUser.id);
+  //       //this.likedItems.id = this.currentUser.likedItems.id;
+  //       this.likedItems = this.currentUser.likedItems;
+  //       console.log(this.likedItems);
+  //     }
+  //   );
+  // }
+
   private checkAuthority(){
     this.authorities = this.tokenService.getUser().authorities;
     for (const authority of this.authorities) {
       if (authority === 'ROLE_ADMIN') {
         console.log(authority);
-        this.userId = this.collection.user;
+        this.userId = this.collection.userId;
         console.log('userId = ' + this.userId);
       }
     }
@@ -104,6 +115,7 @@ export class ItemDetailsComponent implements OnInit {
     this.itemService.likeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Liked item : ' + item.name);
       this.handleItemDetails();
+     // this.handleUserDetails();
     });
   }
 
@@ -111,6 +123,7 @@ export class ItemDetailsComponent implements OnInit {
     this.itemService.dislikeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
+    //  this.handleUserDetails();
     });
   }
 }

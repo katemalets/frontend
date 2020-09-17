@@ -3,9 +3,8 @@ export interface Item {
   name: string;
   description: string;
   imageURL: string;
-  collection: number;
+  collectionId: number;
   likesNumber: number;
-  userLiked: boolean;
   tags: {
     id: number;
     name: string

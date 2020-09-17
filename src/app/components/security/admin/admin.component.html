@@ -1,7 +1,6 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
+<div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
@@ -9,9 +8,8 @@
         <th scope="col">Enabled</th>
         <th scope="col">Roles</th>
         <th scope="col">Actions</th>
-
       </tr>
-      </thead>
+    </thead>
       <tbody>
       <tr *ngFor="let user of users">
         <td>{{user.id}}</td>
@@ -25,6 +23,7 @@
         </td>
         <td>
           <div>
+
             <button mat-icon-button>
               <mat-icon (click)="deleteUser(user)" >person_remove</mat-icon>
             </button>
@@ -44,10 +43,11 @@
             <button mat-icon-button>
               <mat-icon routerLink="/{{url}}/{{user.id}}">login</mat-icon>
             </button>
+
           </div>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-</div>
+

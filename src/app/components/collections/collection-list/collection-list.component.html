@@ -7,11 +7,13 @@
             <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
             <h1>{{collection.name}}</h1>
           </a>
-          <button  class="btn btn-light btn-sm">Add to list</button>
+          <button mat-icon-button>
+            <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
+          </button>
         </div>
-<!--        <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">-->
-<!--          No collections found</div>-->
-<!--      </div>-->
+        <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          No collections found</div>
+      </div>
     </div>
   </div>
 </div>
