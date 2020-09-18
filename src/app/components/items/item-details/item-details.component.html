@@ -31,7 +31,7 @@
   </button>
 </div>
 <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-  <mat-icon  routerLink="/tags/create" routerLinkActive="active">add</mat-icon>
+  <mat-icon  routerLink="/tags/items/{{item.id}}" routerLinkActive="active">add</mat-icon>
 </button>
 <router-outlet>
 </router-outlet>

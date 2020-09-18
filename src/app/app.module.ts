@@ -4,7 +4,7 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 
 import { AppComponent } from './app.component';
-import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
+import { ActivatedRoute, RouterModule, Routes} from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/security/register/register.component';
@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'items', component: SearchItemsComponent},
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
-  { path: 'tags/create', component: CreateTagComponent},
+  { path: 'tags/items/:id', component: CreateTagComponent},
   //toDo instead of ItemDetailsComponent put TagItemsComponent!
   { path: 'tags/:id', component: TagItemsComponent},
   { path: 'users/:id', component: HomeComponent},

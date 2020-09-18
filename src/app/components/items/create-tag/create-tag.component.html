@@ -1,0 +1,9 @@
+<h3>new tag</h3>
+<form method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
+  <div>
+    <input formControlName="name">
+  </div>
+  <div class="form-group">
+    <input [disabled]="!myForm.valid" type="submit" name="btnSubmit"  value="Save" />
+  </div>
+</form>
