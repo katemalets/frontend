@@ -22,7 +22,6 @@ export class MainPageComponent implements OnInit {
   tags: Tag[];
   maxCollectionsNumber = 6;
   maxItemsNumber = 6;
-  url = '/top';
 
   ngOnInit(): void {
     this.getTopCollections();
@@ -31,21 +30,21 @@ export class MainPageComponent implements OnInit {
   }
 
   getTopCollections(): void{
-    this.collectionService.getTopCollections(this.maxCollectionsNumber, this.url + '/collections').subscribe(data => {
+    this.collectionService.getTopCollections(this.maxCollectionsNumber, '/collections').subscribe(data => {
      // console.log('Top collections' + JSON.stringify(data));
       this.collections = data;
     });
   }
 
   getLastItems(): void{
-    this.itemService.getLastItems(this.maxItemsNumber, this.url + '/items').subscribe(data => {
+    this.itemService.getLastItems(this.maxItemsNumber, '/items').subscribe(data => {
      // console.log('Last Items' + JSON.stringify(data));
       this.items = data;
     });
   }
 
   getTags(): void{
-    this.tagService.getTags( this.url + '/tags').subscribe( data => {
+    this.tagService.getTags( '/tags').subscribe( data => {
       this.tags = data;
     });
   }

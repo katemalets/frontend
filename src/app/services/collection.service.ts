@@ -17,7 +17,7 @@ export class CollectionService {
   constructor(private httpClient: HttpClient) { }
 
   getTopCollections(amount: number, url: string): Observable<Collection[]>{
-    return  this.httpClient.get<Collection[]>(API_URL + url + '/' + amount);
+    return  this.httpClient.get<Collection[]>(API_URL + '/collections/top' + '/' + amount);
   }
 
   getCollection(id: number, url: string): Observable<Collection> {

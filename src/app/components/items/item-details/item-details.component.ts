@@ -10,6 +10,9 @@ import {UserService} from '../../../services/user.service';
 import {Tag} from '../../../interface/tag';
 import {TagService} from '../../../services/tag.service';
 import {concat} from 'rxjs';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CommentService} from '../../../services/comment.service';
+import {Comment} from '../../../interface/comment';
 
 @Component({
   selector: 'app-item-details',
@@ -31,17 +34,27 @@ export class ItemDetailsComponent implements OnInit {
     id: number;
     name: string
   };
-  likedItems: {
-    id: number;
-    name: string;
+  // likedItems: {
+  //   id: number;
+  //   name: string;
+  // };
+  comments: {
+    id: number,
+    comment: string;
+    username: string;
   };
+
+  comment: Comment;
+  myForm: FormGroup;
 
   constructor(private itemService: ItemService,
               private tokenService: TokenStorageService,
               private userService: UserService,
               private tagService: TagService,
+              private commentService: CommentService,
               private route: ActivatedRoute,
               private router: Router,
+              private formBuilder: FormBuilder,
               private collectionService: CollectionService) { }
 
   ngOnInit(): void {
@@ -51,6 +64,7 @@ export class ItemDetailsComponent implements OnInit {
     }
     this.handleItemDetails();
     //this.handleUserDetails();
+    this.createForm();
   }
 
   private handleItemDetails() {
@@ -60,6 +74,7 @@ export class ItemDetailsComponent implements OnInit {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
         this.tags = this.item.tags;
+        this.comments = this.item.comments;
         this.collectionId = this.item.collectionId;
         this.handleCollectionDetails(this.collectionId);
       }
@@ -135,6 +150,31 @@ export class ItemDetailsComponent implements OnInit {
     this.tagService.deleteTag(tag.id, this.item.id).subscribe(data => {
       console.log('Deleting tag' + tag.name);
       this.handleItemDetails();
+    });
+  }
+
+
+  private createForm() {
+    this.myForm = this.formBuilder.group({
+      comment: new FormControl(this.comment ? this.comment.comment : '', Validators.required)
+      }
+    );
+    console.log(this.myForm);
+  }
+
+  submitForm(data: FormGroup) {
+    if (data.valid){
+      this.addComment(data.value);
+    }
+    console.log(data);
+  }
+
+  addComment(comment: Comment) {
+    const itemId = +this.route.snapshot.paramMap.get('id');
+    this.commentService.createComment(comment, itemId, this.tokenUserId).subscribe( res => {
+      console.log(comment.comment + ' added successfully');
+      this.myForm.reset();
+      this.comment = undefined;
     });
   }
 }

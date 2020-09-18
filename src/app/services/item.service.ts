@@ -18,7 +18,7 @@ export class ItemService {
   constructor(private httpClient: HttpClient) { }
 
   getLastItems(amount: number, url: string): Observable<Item[]>{
-    return this.httpClient.get<Item[]>(API_URL + url + '/' + amount);
+    return this.httpClient.get<Item[]>(API_URL + '/items/top/' + amount);
   }
 
   getItems(url: string): Observable<Item[]>{

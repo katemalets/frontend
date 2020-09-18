@@ -35,3 +35,21 @@
 </button>
 <router-outlet>
 </router-outlet>
+
+<div class="container">
+  <hr>
+  <div class="row comment" *ngFor="let comment of comments">
+    <div class="head">
+      <p class='user'>{{comment.username}} :  </p>
+    </div>
+    <div></div>
+    <div> {{comment.comment}} </div>
+    <hr>
+  </div>
+  <form *ngIf="collection.userId == tokenUserId || collection.userId == userId" method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
+  <div class="row">
+    <input formControlName="comment" type="text" class="form-control" placeholder="  Add a comment">
+    <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  </form>
+</div>

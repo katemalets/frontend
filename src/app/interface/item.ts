@@ -9,4 +9,9 @@ export interface Item {
     id: number;
     name: string
   };
+  comments: {
+    id: number,
+    comment: string;
+    username: string;
+  };
 }

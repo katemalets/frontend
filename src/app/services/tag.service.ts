@@ -20,7 +20,6 @@ export class TagService {
     return this.httpClient.delete(API_URL + '/tags' + '/' + tagId + '/items' + '/' + itemId);
   }
 
-
   createTag(tag, itemId: number) {
     return this.httpClient.post(API_URL + '/tags/items' + '/' + itemId , tag);
   }

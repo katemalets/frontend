@@ -42,7 +42,6 @@ const routes: Routes = [
   { path: 'collections/:id', component: CollectionDetailsComponent},
   { path: 'items/:id', component: ItemDetailsComponent},
   { path: 'tags/items/:id', component: CreateTagComponent},
-  //toDo instead of ItemDetailsComponent put TagItemsComponent!
   { path: 'tags/:id', component: TagItemsComponent},
   { path: 'users/:id', component: HomeComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
