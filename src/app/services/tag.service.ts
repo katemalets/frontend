@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tag} from '../interface/tag';
+import {Collection} from '../interface/collection';
+import {Item} from '../interface/item';
 
 const API_URL = 'http://localhost:8080/api';
 
@@ -22,5 +24,9 @@ export class TagService {
 
   createTag(tag, itemId: number) {
     return this.httpClient.post(API_URL + '/tags/items' + '/' + itemId , tag);
+  }
+
+  getItems(tagId: number) {
+    return this.httpClient.get<Item[]>(API_URL + '/tags/top/items/' + tagId );
   }
 }

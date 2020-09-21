@@ -11,7 +11,7 @@
         <a class="nav-link" routerLink="/account">My account <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a routerLink="/admin" class="nav-link">Users</a>
+        <a routerLink="/users" class="nav-link">Users</a>
       </li>
       <li class="nav-item">
         <a routerLink="/collections" class="nav-link">Collections</a>
@@ -20,10 +20,7 @@
         <a routerLink="/items" class="nav-link">Items</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/register" class="nav-link">Sign up</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/login" class="nav-link">Login</a>
+        <a routerLink="/login" *ngIf="!isLoggedIn" class="nav-link">Login</a>
       </li>
         <li class="nav-item" *ngIf="isLoggedIn">
           <a href class="nav-link" (click)="logout()">LogOut</a>

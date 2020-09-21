@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.authorities = this.tokenStorage.getUser().authorities;
     }
+    if(this.isLoggedIn){
+      this.router.navigateByUrl('/account');
+    }
   }
 
   onSubmit(): void {
@@ -38,19 +41,18 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.authorities = this.tokenStorage.getUser().authorities;
         this.reloadPage();
+
       },
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     );
-    this.router.navigateByUrl('/account');
   }
 
   reloadPage(): void {
     window.location.reload();
   }
-
 }
 
 

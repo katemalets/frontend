@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Tag} from '../../../interface/tag';
 import {ActivatedRoute} from '@angular/router';
 import {CollectionService} from '../../../services/collection.service';
+import {TagService} from '../../../services/tag.service';
+import {Item} from '../../../interface/item';
 
 @Component({
   selector: 'app-tag-items',
@@ -10,15 +12,15 @@ import {CollectionService} from '../../../services/collection.service';
 })
 export class TagItemsComponent implements OnInit {
 
-  tag: Tag;
-  items: {
-    id: number;
-    name: string;
-    description: string;
-    imageURL: string
-  };
+  items: Item[];
+  // items: {
+  //   id: number;
+  //   name: string;
+  //   description: string;
+  //   imageURL: string
+  // };
 
-  constructor(private collectionService: CollectionService,
+  constructor(private tagService: TagService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,11 +28,11 @@ export class TagItemsComponent implements OnInit {
   }
 
   private getItems(): void{
-    const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.collectionService.getCollection(collectionId, '/top/tags').subscribe(data => {
-      this.tag = data;
-      this.items = this.tag.items;
-      console.log('Data =' + JSON.stringify(data));
+    const tagId: number = +this.route.snapshot.paramMap.get('id');
+    this.tagService.getItems(tagId).subscribe(data => {
+      this.items = data;
+      console.log(this.items);
+      //console.log('Data =' + JSON.stringify(data));
     });
   }
 }

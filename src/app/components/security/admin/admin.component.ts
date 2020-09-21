@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.getUsers('/admin').subscribe(data => {
+    this.userService.getUsers().subscribe(data => {
       this.users = data;
       for (const user of this.users) {
         this.authorities = user.authorities;

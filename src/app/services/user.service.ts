@@ -12,12 +12,12 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(url: string): Observable<User[]> {
-    return this.httpClient.get<User[]>(API_URL + url);
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(API_URL + '/users');
   }
 
   getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(API_URL + '/users' + '/' + id);
+    return this.httpClient.get<User>(API_URL + '/account' + '/' + id);
   }
 
   public deleteUser(user) {
