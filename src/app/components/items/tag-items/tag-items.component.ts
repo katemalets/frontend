@@ -13,12 +13,6 @@ import {Item} from '../../../interface/item';
 export class TagItemsComponent implements OnInit {
 
   items: Item[];
-  // items: {
-  //   id: number;
-  //   name: string;
-  //   description: string;
-  //   imageURL: string
-  // };
 
   constructor(private tagService: TagService,
               private route: ActivatedRoute) { }

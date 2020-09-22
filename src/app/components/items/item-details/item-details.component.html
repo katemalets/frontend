@@ -13,13 +13,13 @@
         <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
           <mat-icon (click)="deleteItem(item)">delete</mat-icon>
         </button>
-        <button mat-icon-button >
+        <button mat-icon-button *ngIf="!userLiked" >
           <mat-icon *ngIf="tokenUserId != null"
-                    (click)="dislikeItem(item)">favorite_border</mat-icon>
+                    (click)="likeItem(item)">favorite_border</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button *ngIf="userLiked">
           <mat-icon *ngIf="tokenUserId != null"
-                    (click)="likeItem(item)">favorite</mat-icon>
+                    (click)="dislikeItem(item)">favorite</mat-icon>
         </button>
         <span class="lead" *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
       </h1>
@@ -42,7 +42,7 @@
   <hr>
   <p class="lead" align="center">Comments</p>
   <br>
-  <div class="row comment" *ngFor="let comment of comments">
+  <div class="row comment" *ngFor="let comment of item.comments">
     <div class="head">
       <p class='user'>{{comment.username}} :  </p>
     </div>

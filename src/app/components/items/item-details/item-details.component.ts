@@ -9,7 +9,6 @@ import {User} from '../../../interface/user';
 import {UserService} from '../../../services/user.service';
 import {Tag} from '../../../interface/tag';
 import {TagService} from '../../../services/tag.service';
-import {concat} from 'rxjs';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CommentService} from '../../../services/comment.service';
 import {Comment} from '../../../interface/comment';
@@ -30,16 +29,7 @@ export class ItemDetailsComponent implements OnInit {
   url = '/items';
   item: Item;
   items: Item[];
-  // likedItems: {
-  //   id: number;
-  //   name: string;
-  // };
-  comments: {
-    id: number,
-    comment: string;
-    username: string;
-  };
-
+  userLiked: boolean;
   comment: Comment;
   myForm: FormGroup;
 
@@ -59,7 +49,6 @@ export class ItemDetailsComponent implements OnInit {
       this.tokenUserId = this.tokenService.getUser().id;
     }
     this.handleItemDetails();
-    //this.handleUserDetails();
     this.createForm();
   }
 
@@ -69,9 +58,20 @@ export class ItemDetailsComponent implements OnInit {
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
-        this.comments = this.item.comments;
+       // this.comments = this.item.comments;
         this.collectionId = this.item.collectionId;
         this.handleCollectionDetails(this.collectionId);
+        for (const userId of this.item.usersWhoLikedIds) {
+          if (userId === this.tokenUserId) {
+            this.userLiked = true;
+            console.log(userId + ' liked this item');
+            console.log('----> people who liked = ' + this.item.usersWhoLikedIds);
+          }
+        }
+        if (!this.userLiked){
+          console.log('----> people who liked = ' + this.item.usersWhoLikedIds);
+          this.userLiked = false;
+        }
       }
     );
     this.itemService.getItems('/items').subscribe(
@@ -92,18 +92,6 @@ export class ItemDetailsComponent implements OnInit {
     );
   }
 
-  // private handleUserDetails() {
-  //   this.userService.getUser(this.tokenUserId).subscribe(
-  //     data => {
-  //       this.currentUser = data;
-  //       console.log('current user: ' + this.currentUser.id);
-  //       //this.likedItems.id = this.currentUser.likedItems.id;
-  //       this.likedItems = this.currentUser.likedItems;
-  //       console.log(this.likedItems);
-  //     }
-  //   );
-  // }
-
   private checkAuthority(){
     this.authorities = this.tokenService.getUser().authorities;
     for (const authority of this.authorities) {
@@ -123,13 +111,12 @@ export class ItemDetailsComponent implements OnInit {
       }
     );
   }
- //toDo resolve like system!
   likeItem(item: Item): void {
     console.log('Id of liked person:' + this.tokenUserId);
     this.itemService.likeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Liked item : ' + item.name);
       this.handleItemDetails();
-     // this.handleUserDetails();
+      this.userLiked = true;
     });
   }
 
@@ -137,15 +124,19 @@ export class ItemDetailsComponent implements OnInit {
     this.itemService.dislikeItem(item, this.tokenUserId).subscribe(data => {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
-    //  this.handleUserDetails();
+      this.userLiked = false;
     });
   }
+
+
+
+
 
   deleteTag(tag: Tag): void{
     this.tagService.deleteTag(tag.id, this.item.id).subscribe(data => {
       console.log('Deleting tag' + tag.name);
-      this.handleItemDetails();
     });
+    this.handleItemDetails();
   }
 
 
@@ -154,7 +145,6 @@ export class ItemDetailsComponent implements OnInit {
       comment: new FormControl(this.comment ? this.comment.comment : '', Validators.required)
       }
     );
-    console.log(this.myForm);
   }
 
   submitForm(data: FormGroup) {

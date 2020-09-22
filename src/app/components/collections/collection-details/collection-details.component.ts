@@ -20,13 +20,6 @@ export class CollectionDetailsComponent implements OnInit {
   url = '/collections';
   collection: Collection;
   item: Item;
-  items: {
-    id: number;
-    name: string;
-    description: string;
-    imageURL: string
-  };
-
   message: string;
   currentId: number;
 
@@ -58,7 +51,6 @@ export class CollectionDetailsComponent implements OnInit {
     this.collectionService.getCollection(collectionId, this.url).subscribe(
       data => {
         this.collection = data;
-        this.items = this.collection.items;
         this.checkAuthority();
       }
     );

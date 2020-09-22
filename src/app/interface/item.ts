@@ -5,6 +5,7 @@ export interface Item {
   imageURL: string;
   collectionId: number;
   likesNumber: number;
+  usersWhoLikedIds: number[];
   tags: {
     id: number;
     name: string
