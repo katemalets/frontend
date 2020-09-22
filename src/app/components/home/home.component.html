@@ -1,33 +1,43 @@
-<h3> Your name:  {{user.username}} </h3>
-<h3> Email: {{user.email}} </h3>
-<button mat-icon-button>
+<br>
+<br>
+<div class="container">
+  <p class="lead" align="center">
+  Your name:  {{user.username}}
+  </p>
+  <p class="lead" align="center">
+  Email: {{user.email}}
+  </p>
+  <hr class="my-4">
+</div>
+
+<p class="lead" align="center">
+  My collections
+  <button mat-icon-button>
   <mat-icon *ngIf="tokenUserId !== 0" routerLink="/collections">addchart</mat-icon>
 </button>
+</p>
+<br>
 <div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
       <div class="row">
         <div *ngFor="let collection of user.collections" class="col-md-4 col-sm-6">
           <a routerLink="/collections/{{collection.id}}">
-            <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
-            <h1>{{collection.name}}</h1>
+            <img width="290px" src="{{collection.imageURL}}" class="img-responsive">
           </a>
-          <button mat-icon-button>
-            <mat-icon *ngIf="collection.user == tokenUserId || collection.user == userId"
-                      (click)="deleteCollection(collection)">delete</mat-icon>
+          <div align="center">
+            <p class="lead">{{collection.name}}
+          <button mat-icon-button *ngIf="collection.userId === tokenUserId || collection.userId === userId">
+            <mat-icon (click)="deleteCollection(collection)">delete</mat-icon>
           </button>
           <button mat-icon-button>
             <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
           </button>
+          </p>
+            </div>
+
         </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 

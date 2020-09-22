@@ -4,12 +4,18 @@
       <div class="row">
         <div *ngFor="let collection of collections" class="col-md-4 col-sm-6">
           <a routerLink="/{{url}}/{{collection.id}}">
-            <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
-            <h1>{{collection.name}}</h1>
+            <img width="290px" src="{{collection.imageURL}}" class="img-responsive">
           </a>
-          <button mat-icon-button>
-            <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
-          </button>
+          <div align="center"> <p class="lead">{{collection.name}}
+<!--              <button mat-icon-button *ngIf="tokenUserId !== undefined">-->
+<!--                <mat-icon (click)="addCollection(collection)">add</mat-icon>-->
+<!--              </button>-->
+              <button mat-icon-button>
+                <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
+              </button>
+            </p>
+            </div>
+
         </div>
         <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">
           No collections found</div>

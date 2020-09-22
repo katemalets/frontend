@@ -1,55 +1,59 @@
-<div class="detail-section">
-  <div class="container-fluid">
-    <img src="{{item.imageURL}}" class="detail-image">
-    <h3>{{item.name}}</h3>
-    <hr>
-    <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-      <mat-icon routerLink="/items/update/{{item.id}}">edit</mat-icon>
-    </button>
-    <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-      <mat-icon (click)="deleteItem(item)">delete</mat-icon>
-    </button>
-    <button mat-icon-button >
-      <mat-icon *ngIf="tokenUserId != null"
-                (click)="dislikeItem(item)">favorite_border</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon *ngIf="tokenUserId != null"
-                (click)="likeItem(item)">favorite</mat-icon>
-    </button>
-    <span *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
+<div class="container main-content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="imgAbt">
+        <img src="{{item.imageURL}}"  width="100%" />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1 align="center" class="lead">{{item.name}}
+        <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
+          <mat-icon routerLink="/items/update/{{item.id}}">edit</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
+          <mat-icon (click)="deleteItem(item)">delete</mat-icon>
+        </button>
+        <button mat-icon-button >
+          <mat-icon *ngIf="tokenUserId != null"
+                    (click)="dislikeItem(item)">favorite_border</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon *ngIf="tokenUserId != null"
+                    (click)="likeItem(item)">favorite</mat-icon>
+        </button>
+        <span class="lead" *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
+      </h1>
+      <p class="font-description">{{item.description}}</p>
 
-
-    <h4>Description: </h4>
-    <p>{{item.description}}</p>
+      <p class="font-description">Item can be found by these tags: </p>
+      <div *ngFor="let tag of item.tags">
+        <span class="font-description">{{tag.name}}</span>
+        <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
+          <mat-icon (click)="deleteTag(tag)">remove</mat-icon>
+        </button>
+      </div>
+      <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
+        <mat-icon  routerLink="/tags/items/{{item.id}}" routerLinkActive="active">add</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
-<div *ngFor="let tag of tags">
-  <span>{{tag.name}}</span>
-  <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-    <mat-icon (click)="deleteTag(tag)">remove</mat-icon>
-  </button>
-</div>
-<button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-  <mat-icon  routerLink="/tags/items/{{item.id}}" routerLinkActive="active">add</mat-icon>
-</button>
-<router-outlet>
-</router-outlet>
 
 <div class="container">
   <hr>
+  <p class="lead" align="center">Comments</p>
+  <br>
   <div class="row comment" *ngFor="let comment of comments">
     <div class="head">
       <p class='user'>{{comment.username}} :  </p>
     </div>
     <div></div>
-    <div> {{comment.comment}} </div>
+    <div class="font-description"> {{comment.comment}} </div>
     <hr>
   </div>
   <form *ngIf="tokenUserId != null" method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
-  <div class="row">
     <input formControlName="comment" type="text" class="form-control" placeholder="  Add a comment">
-    <button type="submit" class="btn btn-primary">Send</button>
-    </div>
+    <br>
+    <button type="submit" class="btn btn-secondary">Send</button>
   </form>
+</div>
 </div>

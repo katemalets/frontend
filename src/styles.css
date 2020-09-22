@@ -1,15 +1,23 @@
+body {
+  background-color: #f5f5f5;
+}
 .section-content{
   position:relative;
   margin:0 auto;
   z-index:1
 }
-
+.img-home{
+  padding:3%;
+}
+.font-description{
+  font-family: Helvetica;
+}
 .section-content-p30{
   padding:0 2%
 }
 
 .main-content{
-  min-height:100vh;
+  /*min-height:10vh;*/
   padding:6% 10%;
 }
 

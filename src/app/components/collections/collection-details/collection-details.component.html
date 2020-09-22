@@ -1,50 +1,55 @@
-<link rel="stylesheet" href="collection-details.component.css">
-<div class="detail-section">
-  <div class="container-fluid">
-    <img src="{{collection.imageURL}}" class="detail-image">
-    <h3>{{collection.name}}</h3>
-    <hr>
-    <button mat-icon-button>
-      <mat-icon *ngIf="tokenUserId !== undefined"
-      (click)="addCollection(collection)">save_alt</mat-icon>
-    </button>
-  <button mat-icon-button>
-    <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
-              routerLink="/collections/update/{{collection.id}}">edit</mat-icon>
-  </button>
-    <button mat-icon-button>
-    <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
-              (click)="deleteCollection(collection)">delete</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
-                routerLink="/items/collections/{{collection.id}}">add</mat-icon>
-    </button>
-
-    <h4>Description: </h4>
-    <p>{{collection.description}}</p>
-    <a routerLink="/collections" class="mt-5">Back to collections</a>
+<div class="container main-content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="imgAbt">
+        <img src="{{collection.imageURL}}"  width="100%" />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h1 align="center" class="lead">{{collection.name}}
+        <button mat-icon-button>
+          <mat-icon *ngIf="tokenUserId !== undefined"
+                    (click)="addCollection(collection)">save_alt</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
+                    routerLink="/collections/update/{{collection.id}}">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
+                    (click)="deleteCollection(collection)">delete</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
+                    routerLink="/items/collections/{{collection.id}}">add</mat-icon>
+        </button>
+      </h1>
+      <p class="font-description">{{collection.description}}</p>
+    </div>
   </div>
-</div>
 
+  <hr class="my-4">
+  <p class="lead" align="center">
+    Items
+  </p>
 
-<div class="main-content">
+<div class="main-content-items">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
       <div class="row">
         <div *ngFor="let item of items" class="col-md-4">
           <a routerLink="/items/{{item.id}}">
             <img width="250px" src="{{item.imageURL}}" class="img-responsive">
-            <h6>{{item.name}}</h6>
           </a>
-          <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-            <mat-icon (click)="deleteItem(item)">delete</mat-icon>
-          </button>
-
+          <div align="center"> <p class="lead img-home">{{item.name}}
+            <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
+              <mat-icon (click)="deleteItem(item)">delete</mat-icon>
+            </button>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
+</div>
+</div>

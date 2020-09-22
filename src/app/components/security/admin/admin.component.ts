@@ -12,10 +12,6 @@ import {Router} from '@angular/router';
 export class AdminComponent implements OnInit {
 
   users: User[];
-  authorities: {
-    id: number;
-    authority: string
-  };
   url = 'users';
 
   constructor(private userService: UserService,
@@ -30,10 +26,6 @@ export class AdminComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
-      for (const user of this.users) {
-        this.authorities = user.authorities;
-       // console.log(this.authorities);
-      }
     });
   }
 

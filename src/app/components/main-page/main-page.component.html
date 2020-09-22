@@ -1,45 +1,55 @@
 <div class="main-content">
-  <div class="section-content section-content-p30">
     <div class="container-fluid">
-
-      <h3>Tags example</h3>
+      <hr>
+      <p class="lead main-header" align="center">
+        Most popular tags
+      </p>
       <div class="row">
-        <div *ngFor="let tag of tags" class="col-md-3 col-sm-6">
+        <div *ngFor="let tag of tags" class="col-md-2 col-sm-4">
           <a routerLink="/tags/top/items/{{tag.id}}">
             <p>{{tag.name}}</p>
           </a>
         </div>
       </div>
 
-      <h3>Collections with lot of items</h3>
+      <hr>
+      <p class="lead main-header" align="center">
+        Collections with lots of items
+      </p>
       <div class="row">
         <div *ngFor="let collection of collections" class="col-md-4 col-sm-6">
           <a routerLink="/collections/{{collection.id}}">
-            <img width="300px" src="{{collection.imageURL}}" class="img-responsive">
-              <h1>{{collection.name}}</h1>
+            <img width="290px" src="{{collection.imageURL}}" class="img-home img-responsive">
           </a>
+          <div align="center">
+            <p class="lead">{{collection.name}}</p>
+        </div>
         </div>
         <div *ngIf="collections?.length == 0" class="alert alert-warning col-md-12" role="alert">
           No collections found
         </div>
       </div>
+      <hr>
+      <p class="lead main-header" align="center">
+       Last added items
+      </p>
 
-      <h3>Last added items</h3>
       <div class="row">
         <div *ngFor="let item of items" class="col-md-4 col-sm-6">
           <a routerLink="/items/{{item.id}}">
-            <img width="300px" src="{{item.imageURL}}" class="img-responsive">
-            <h1>{{item.name}}</h1>
+            <img width="290px" src="{{item.imageURL}}" class="img-home img-responsive">
           </a>
+          <div align="center">
+            <p class="lead">{{item.name}}</p>
         </div>
         <div *ngIf="items?.length == 0" class="alert alert-warning col-md-12" role="alert">
           No items found
         </div>
       </div>
-
+      </div>
     </div>
   </div>
-</div>
+
 
 
 

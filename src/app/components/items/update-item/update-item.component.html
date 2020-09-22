@@ -20,10 +20,15 @@
     <label for="name">Tag names :</label>
     <div *ngFor="let tag of tags">
     <div class="form-group">
-      <input type="text" class="form-control" id="{{tag.id}}" required [(ngModel)]="tag.name" name="{{tag.name}}">
+      <input type="text" class="form-control" id="{{tag.id}}"
+             required [(ngModel)]="tag.name" name="{{tag.name}}">
     </div>
     </div>
-
     <button type="submit" class="btn btn-success">Submit</button>
+    <br>
   </form>
 </div>
+<br>
+<br>
+<a routerLink="/items/{{item.id}}">
+  <p class="lead" style="color: #666666"> Back to item </p></a>

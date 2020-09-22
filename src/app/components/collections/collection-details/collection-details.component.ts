@@ -79,7 +79,7 @@ export class CollectionDetailsComponent implements OnInit {
     this.collectionService.deleteCollection(collection).subscribe(data => {
         console.log('Deleting collection: ' + collection.name);
         this.handleCollectionDetails();
-        this.router.navigateByUrl('collections');
+        this.router.navigateByUrl('account');
       }
     );
   }

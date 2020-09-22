@@ -18,12 +18,6 @@ export class HomeComponent implements OnInit {
   user: User;
   tokenUserId: number;
   userId: number;
-  collections: {
-    name: string;
-    topic: string;
-    imageURL: string;
-    description: string
-  };
 
   message: string;
 
@@ -54,6 +48,7 @@ export class HomeComponent implements OnInit {
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.user = data;
+       // this.collections = this.user.collections;
       }
     );
   }

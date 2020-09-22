@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.authorities = this.tokenStorage.getUser().authorities;
     }
-    if(this.isLoggedIn){
+    if (this.isLoggedIn){
       this.router.navigateByUrl('/account');
     }
   }

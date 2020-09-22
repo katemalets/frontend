@@ -11,7 +11,8 @@ export interface User {
   collections: {
     name: string;
     topic: string;
-    imageURL: string
+    imageURL: string;
+    userId: number;
   };
   likedItems: {
     id: number;

@@ -30,10 +30,6 @@ export class ItemDetailsComponent implements OnInit {
   url = '/items';
   item: Item;
   items: Item[];
-  tags: {
-    id: number;
-    name: string
-  };
   // likedItems: {
   //   id: number;
   //   name: string;
@@ -73,7 +69,6 @@ export class ItemDetailsComponent implements OnInit {
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
-        this.tags = this.item.tags;
         this.comments = this.item.comments;
         this.collectionId = this.item.collectionId;
         this.handleCollectionDetails(this.collectionId);

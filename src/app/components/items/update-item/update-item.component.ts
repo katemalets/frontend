@@ -52,6 +52,5 @@ export class UpdateItemComponent implements OnInit {
 
   onSubmit() {
     this.updateItem();
-    //this.router.navigateByUrl('home');
   }
 }

@@ -4,14 +4,24 @@
       <div class="row">
         <div *ngFor="let item of items" class="col-md-4 col-sm-6">
           <a routerLink="/items/{{item.id}}">
-            <img width="300px" src="{{item.imageURL}}" class="img-responsive">
-            <h1>{{item.name}}</h1>
+            <img width="290px" src="{{item.imageURL}}" class="img-responsive">
           </a>
-          <button  class="btn btn-light btn-sm">Add to list</button>
+          <div align="center">
+            <p class="lead">
+              {{item.name}}
+              <button mat-icon-button>
+                <mat-icon routerLink="/items/{{item.id}}">info</mat-icon>
+              </button>
+            </p>
+          </div>
         </div>
         <div *ngIf="items?.length == 0" class="alert alert-warning col-md-12" role="alert">
-          No items found</div>
+          No items found
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
