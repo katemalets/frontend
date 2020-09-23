@@ -16,8 +16,8 @@
                  class="form-control" placeholder="Your Name *" value="" />
         </div>
         <div class="form-group">
-          <input formControlName="imageURL"
-                 type="text" name="txtPhone" class="form-control" placeholder="Your Image *" value="" />
+          <input formControlName="description"
+                 type="text" name="txtPhone" class="form-control" placeholder="Your Description" value="" />
         </div>
         <div class="form-group">
           <input [disabled]="!myForm.valid" type="submit" name="btnSubmit" class="btnContact" value="Save" />
@@ -25,11 +25,21 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <textarea formControlName="description"
-            name="txtMsg" class="form-control" placeholder="Your Description *" style="width: 100%; height: 150px;"></textarea>
+            <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+            <ngx-dropzone-label>
+             <h2>Drop your image</h2>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of file" [file]="f" [removable]="false">
+              <ngx-dropzone-label></ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
         </div>
       </div>
     </div>
   </form>
+  <a routerLink="/collections/{{collectionId}}">
+    <p class="lead" style="color: #666666"> Back to collection </p></a>
 </div>
+
+
 

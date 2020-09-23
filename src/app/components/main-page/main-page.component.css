@@ -4,3 +4,30 @@
 .main-content{
   padding:1% 10%;
 }
+
+.block{
+  display:inline-block;
+  margin-left:10px;
+  margin-top:10px;
+  opacity: 1;
+  -webkit-transform: scale(1,1);
+  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-duration: 550ms;
+  -moz-transform: scale(1,1);
+  -moz-transition-timing-function: ease-out;
+  -moz-transition-duration: 550ms;
+  transform: scale(1,1);
+  transition-timing-function: ease-out;
+  transition-duration: 550ms;
+}
+.block:hover {
+  transform: scale(1.1,1.1);
+  transition-timing-function: ease-out;
+  transition-duration: 550ms;
+  -webkit-transform: scale(1.2,1.2);
+  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-duration: 550ms;
+  -moz-transform: scale(1.2,1.2);
+  -moz-transition-timing-function: ease-out;
+  -moz-transition-duration: 550ms;
+}

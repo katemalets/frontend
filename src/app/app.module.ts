@@ -30,6 +30,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { CreateTagComponent } from './components/items/create-tag/create-tag.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {UploadService} from './services/upload.service';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
@@ -70,21 +72,22 @@ const routes: Routes = [
     TagItemsComponent,
     CreateTagComponent,
   ],
-  imports: [
-    RouterModule.forRoot(routes),
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    TagCloudModule,
-    DragDropModule
-  ],
+    imports: [
+        RouterModule.forRoot(routes),
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        CloudinaryModule.forRoot(Cloudinary, {cloud_name: 'katemalets'}),
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
+        TagCloudModule,
+        DragDropModule,
+        NgxDropzoneModule
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

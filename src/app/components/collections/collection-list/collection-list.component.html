@@ -7,9 +7,6 @@
             <img width="290px" src="{{collection.imageURL}}" class="img-responsive">
           </a>
           <div align="center"> <p class="lead">{{collection.name}}
-<!--              <button mat-icon-button *ngIf="tokenUserId !== undefined">-->
-<!--                <mat-icon (click)="addCollection(collection)">add</mat-icon>-->
-<!--              </button>-->
               <button mat-icon-button>
                 <mat-icon routerLink="/collections/{{collection.id}}">info</mat-icon>
               </button>

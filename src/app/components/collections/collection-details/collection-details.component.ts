@@ -22,6 +22,7 @@ export class CollectionDetailsComponent implements OnInit {
   item: Item;
   message: string;
   currentId: number;
+  file: File;
 
   constructor(private collectionService: CollectionService,
               private tokenService: TokenStorageService,
@@ -107,5 +108,10 @@ export class CollectionDetailsComponent implements OnInit {
         this.router.navigateByUrl('/collections' + '/' + this.collection.id);
       }
     );
+  }
+
+  onSelect(event) {
+    this.file = event.addedFiles;
+    console.log(this.file);
   }
 }
