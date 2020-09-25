@@ -31,14 +31,12 @@ export class MainPageComponent implements OnInit {
 
   getTopCollections(): void{
     this.collectionService.getTopCollections(this.maxCollectionsNumber, '/collections').subscribe(data => {
-     // console.log('Top collections' + JSON.stringify(data));
       this.collections = data;
     });
   }
 
   getLastItems(): void{
     this.itemService.getLastItems(this.maxItemsNumber, '/items').subscribe(data => {
-     // console.log('Last Items' + JSON.stringify(data));
       this.items = data;
     });
   }

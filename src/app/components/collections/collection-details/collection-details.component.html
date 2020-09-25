@@ -39,7 +39,7 @@
       <div class="row">
         <div *ngFor="let item of collection.items" class="col-md-4">
           <a routerLink="/items/{{item.id}}">
-            <img width="250px" src="{{item.imageURL}}" class="img-responsive">
+            <img width="250px" src="{{item.imageURL}}" class="img-responsive block">
           </a>
           <div align="center"> <p class="lead img-home">{{item.name}}
             <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">

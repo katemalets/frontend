@@ -1,10 +1,14 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
     <div class="container-fluid">
+      <hr>
+      <p class="lead main-header" align="center">
+        Items
+      </p>
       <div class="row">
         <div *ngFor="let item of items" class="col-md-4 col-sm-6">
           <a routerLink="/items/{{item.id}}">
-            <img width="290px" src="{{item.imageURL}}" class="img-responsive">
+            <img width="290px" src="{{item.imageURL}}" class="img-responsive block">
           </a>
           <div align="center">
             <p class="lead">
@@ -15,7 +19,7 @@
             </p>
           </div>
         </div>
-        <div *ngIf="items?.length == 0" class="alert alert-warning col-md-12" role="alert">
+        <div *ngIf="items.length === 0" class="alert alert-warning col-md-12" role="alert">
           No items found
         </div>
       </div>

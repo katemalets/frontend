@@ -30,11 +30,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { CreateTagComponent } from './components/items/create-tag/create-tag.component';
-import {NgxDropzoneModule} from 'ngx-dropzone';
-import {UploadService} from './services/upload.service';
+import { NgxDropzoneModule} from 'ngx-dropzone';
+import { CommentListComponent} from './components/items/comment-list/comment-list.component';
 
 const routes: Routes = [
   { path: 'home', component: MainPageComponent},
+  { path: 'users/:id', component: HomeComponent},
   { path: 'account', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -45,7 +46,6 @@ const routes: Routes = [
   { path: 'items/:id', component: ItemDetailsComponent},
   { path: 'tags/items/:id', component: CreateTagComponent},
   { path: 'tags/top/items/:id', component: TagItemsComponent},
-  { path: 'users/:id', component: HomeComponent},
   { path: 'collections/update/:id', component: UpdateCollectionComponent},
   { path: 'items/update/:id', component: UpdateItemComponent},
   { path: 'items/collections/:id', component: CreateItemComponent},
@@ -71,6 +71,7 @@ const routes: Routes = [
     MainPageComponent,
     TagItemsComponent,
     CreateTagComponent,
+    CommentListComponent
   ],
     imports: [
         RouterModule.forRoot(routes),
@@ -92,3 +93,19 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+/*TODO:
+*   1. collection image should contain some of item images, not one and only
+*   2. highlight titles
+*   3. CenterY likes counter with icons (move up icons)
+*   4. Misleading "i" items
+*   5. no titles for collections and items
+*   6. use + icon as "add to my collections". Add item as text + icon.
+*   7. Removing tags in editing screen.
+*   8. jopa s kommentami :)
+*   11. User registration
+*   12. dead-looking my account
+*   13. error message to the bottom (above button)
+*   14. block button if username or password not entered
+* */

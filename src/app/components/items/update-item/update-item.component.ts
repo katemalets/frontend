@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Item} from '../../../interface/item';
 import {ItemService} from '../../../services/item.service';
 import {UploadService} from '../../../services/upload.service';
+import {Tag} from '../../../interface/tag';
+import {TagService} from '../../../services/tag.service';
 
 @Component({
   selector: 'app-update-item',
@@ -13,36 +15,33 @@ export class UpdateItemComponent implements OnInit {
 
   item: Item;
   file: File;
+  itemId: number;
 
   constructor(private itemService: ItemService,
               private route: ActivatedRoute,
               private router: Router,
-              private uploadService: UploadService) {
+              private uploadService: UploadService,
+              private tagService: TagService) {
   }
 
   ngOnInit(): void {
+    this.itemId = +this.route.snapshot.paramMap.get('id');
     this.route.paramMap.subscribe(() => {
       this.handleItemDetails();
     });
   }
 
   private handleItemDetails() {
-    const itemId: number = +this.route.snapshot.paramMap.get('id');
-    this.itemService.getItem(itemId, '/items/update').subscribe(
+    this.itemService.getItem(this.itemId, '/items/update').subscribe(
       data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
       }
     );
   }
 
   updateItem() {
-    const id: number = +this.route.snapshot.paramMap.get('id');
-    console.log(this.item);
-    console.log('trying to change item');
-    this.itemService.updateItem(id, this.item)
+    this.itemService.updateItem(this.itemId, this.item)
       .subscribe( data => {
-
         console.log(this.item);
       });
   }
@@ -59,7 +58,7 @@ export class UpdateItemComponent implements OnInit {
   uploadImage(): void {
     const data = new FormData();
     if (this.file === undefined){
-      console.log('decide not to change photo');
+      console.log(' user did not change photo');
       this.updateItem();
     } else {
       const fileData = this.file[0];
@@ -74,5 +73,12 @@ export class UpdateItemComponent implements OnInit {
         this.updateItem();
       });
     }
+  }
+
+  deleteTag(tag: Tag): void{
+    this.tagService.deleteTag(tag.id, this.item.id).subscribe(data => {
+      console.log('Deleting tag' + tag.name);
+    });
+    this.router.navigateByUrl('/items/' + this.itemId);
   }
 }

@@ -2,7 +2,6 @@ import {Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../../interface/user';
 import {TokenStorageService} from '../../../services/token-storage.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -12,11 +11,9 @@ import {Router} from '@angular/router';
 export class AdminComponent implements OnInit {
 
   users: User[];
-  url = 'users';
 
   constructor(private userService: UserService,
-              private tokenService: TokenStorageService,
-              private router: Router) {
+              private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {
@@ -34,11 +31,10 @@ export class AdminComponent implements OnInit {
       .subscribe( data => {
         console.log('Deleting user: ' + user.username);
         if (this.tokenService.getUser().id === user.id){
-          console.log('------> equals!!!');
+          console.log('------> Current admin deleted himself');
           this.tokenService.signOut();
-          this.router.navigateByUrl('home');
+          window.location.reload();
         } else {
-          console.log('Everything is okey');
           this.users = this.users.filter(u => u !== user);
         }
       });
@@ -49,11 +45,10 @@ export class AdminComponent implements OnInit {
       .subscribe( data => {
         console.log('Blocking user: ' + user.username);
         if (this.tokenService.getUser().id === user.id){
-          console.log('------> equals!!!');
+          console.log('------> Current admin blocked himself');
           this.tokenService.signOut();
-          this.router.navigateByUrl('home');
+          window.location.reload();
         } else {
-          console.log('Everything is okey');
           this.getUsers();
         }
       });

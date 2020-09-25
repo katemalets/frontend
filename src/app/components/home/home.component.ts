@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {ActivatedRoute} from '@angular/router';
@@ -14,11 +14,10 @@ import {Collection} from '../../interface/collection';
 })
 export class HomeComponent implements OnInit {
 
-  url = 'users';
   user: User;
   tokenUserId: number;
   userId: number;
-
+  authorities: string[];
   message: string;
 
   constructor(private userService: UserService,
@@ -40,17 +39,19 @@ export class HomeComponent implements OnInit {
   private handleUserDetails() {
     this.tokenUserId = this.token.getUser().id;
     this.userId = +this.route.snapshot.paramMap.get('id');
-    // tslint:disable-next-line:triple-equals
-    if (this.userId !== 0){
-      this.tokenUserId = this.userId;
-    }
-    this.userService.getUser(this.tokenUserId).subscribe(
-      data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
-        this.user = data;
-       // this.collections = this.user.collections;
+    this.authorities = this.token.getUser().authorities;
+    for (const authority of this.authorities) {
+      if (authority === 'ROLE_ADMIN') {
+        if (this.userId !== 0) {
+          this.tokenUserId = this.userId;
+          console.log('Working from another user with id = ' + this.userId);
+        }
       }
-    );
+    }
+    this.userService.getUserAccount(this.tokenUserId).subscribe(
+      data => {
+        this.user = data;
+      });
   }
 
   deleteCollection(collection: Collection): void{

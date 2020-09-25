@@ -9,7 +9,7 @@ import {TokenStorageService} from './services/token-storage.service';
 export class AppComponent {
   private authorities: string[];
   isLoggedIn = false;
-  showUsers = false;
+  isAdmin = false;
   username: string;
 
   constructor(private tokenStorageService: TokenStorageService) { }
@@ -17,13 +17,12 @@ export class AppComponent {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       console.log(this.tokenStorageService.getUser());
       this.authorities = user.authorities;
-      this.showUsers = this.authorities.includes('ROLE_ADMIN');
-      console.log(this.showUsers);
+      this.isAdmin = this.authorities.includes('ROLE_ADMIN');
+      console.log('User has role admin - ' + this.isAdmin);
       this.username = user.username;
     }
   }

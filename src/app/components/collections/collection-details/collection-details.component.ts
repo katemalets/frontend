@@ -41,9 +41,8 @@ export class CollectionDetailsComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
       this.handleCollectionDetails();
     });
-    console.log(this.tokenUserId);
     this.data.currentMessage.subscribe(message => this.message = message);
-    console.log('current user (not from admin if null!) ' + this.message);
+    console.log('Current user id - ' + this.message + ' (if 0/null - from admin)');
     this.currentId = +this.message;
   }
 
@@ -61,9 +60,7 @@ export class CollectionDetailsComponent implements OnInit {
     this.authorities = this.tokenService.getUser().authorities;
     for (const authority of this.authorities) {
       if (authority === 'ROLE_ADMIN') {
-        console.log(authority);
         this.userId = this.collection.userId;
-        console.log('userId = ' + this.userId);
       }
     }
   }
@@ -78,16 +75,14 @@ export class CollectionDetailsComponent implements OnInit {
   }
 
   addCollection(collection: Collection): void{
-    console.log('Adding collection ' + collection.name);
     if (this.currentId === 0){
       this.currentId = this.tokenUserId;
     }
     this.collectionService.addCollection(this.collection.id, this.currentId).subscribe( data => {
-      console.log('For user : ' + this.userId);
-      console.log('Token user: ' + this.tokenUserId);
       this.handleCollectionDetails();
       this.router.navigateByUrl('account');
     });
+    console.log('Collection ' + collection.name + ' added for user #' + this.currentId);
   }
 
   private handleItemDetails() {

@@ -20,6 +20,8 @@ import {Comment} from '../../../interface/comment';
 })
 export class ItemDetailsComponent implements OnInit {
 
+  myForm: FormGroup;
+  comment: Comment;
   tokenUserId: number;
   userId: number;
   authorities: string[];
@@ -28,10 +30,8 @@ export class ItemDetailsComponent implements OnInit {
   currentUser: User;
   url = '/items';
   item: Item;
-  items: Item[];
   userLiked: boolean;
-  comment: Comment;
-  myForm: FormGroup;
+  itemId: number;
 
   constructor(private itemService: ItemService,
               private tokenService: TokenStorageService,
@@ -40,25 +40,25 @@ export class ItemDetailsComponent implements OnInit {
               private commentService: CommentService,
               private route: ActivatedRoute,
               private router: Router,
-              private formBuilder: FormBuilder,
-              private collectionService: CollectionService) { }
+              private collectionService: CollectionService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.itemId = +this.route.snapshot.paramMap.get('id');
     this.currentUser = this.tokenService.getUser();
     if (this.tokenService.getToken()){
       this.tokenUserId = this.tokenService.getUser().id;
     }
     this.handleItemDetails();
-    this.createForm();
   }
 
   private handleItemDetails() {
-    const itemId: number = +this.route.snapshot.paramMap.get('id');
-    this.itemService.getItem(itemId, this.url).subscribe(
+    this.itemService.getItem(this.itemId, this.url).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
-       // this.comments = this.item.comments;
+        // @ts-ignore
+        console.log('Tags number ' + this.item.tags.length);
         this.collectionId = this.item.collectionId;
         this.handleCollectionDetails(this.collectionId);
         for (const userId of this.item.usersWhoLikedIds) {
@@ -74,11 +74,6 @@ export class ItemDetailsComponent implements OnInit {
         }
       }
     );
-    this.itemService.getItems('/items').subscribe(
-      data => {
-        this.items = data;
-      }
-      );
   }
 
   private handleCollectionDetails(collectionId: number) {
@@ -125,41 +120,6 @@ export class ItemDetailsComponent implements OnInit {
       console.log('Disliked item : ' + item.name);
       this.handleItemDetails();
       this.userLiked = false;
-    });
-  }
-
-
-
-
-
-  deleteTag(tag: Tag): void{
-    this.tagService.deleteTag(tag.id, this.item.id).subscribe(data => {
-      console.log('Deleting tag' + tag.name);
-    });
-    this.handleItemDetails();
-  }
-
-
-  private createForm() {
-    this.myForm = this.formBuilder.group({
-      comment: new FormControl(this.comment ? this.comment.comment : '', Validators.required)
-      }
-    );
-  }
-
-  submitForm(data: FormGroup) {
-    if (data.valid){
-      this.addComment(data.value);
-    }
-    console.log(data);
-  }
-
-  addComment(comment: Comment) {
-    const itemId = +this.route.snapshot.paramMap.get('id');
-    this.commentService.createComment(comment, itemId, this.tokenUserId).subscribe( res => {
-      console.log(comment.comment + ' added successfully');
-      this.myForm.reset();
-      this.comment = undefined;
     });
   }
 }

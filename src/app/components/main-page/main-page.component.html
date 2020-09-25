@@ -19,7 +19,7 @@
       <div class="row">
         <div *ngFor="let collection of collections" class="col-md-4 col-sm-6">
           <a routerLink="/collections/{{collection.id}}">
-            <img width="290px" src="{{collection.imageURL}}" class="img-home img-responsive block">
+            <img width="310px" src="{{collection.imageURL}}" class="img-home img-responsive block">
           </a>
           <div align="center">
             <p class="lead">{{collection.name}}</p>
@@ -37,7 +37,7 @@
       <div class="row">
         <div *ngFor="let item of items" class="col-md-4 col-sm-6">
           <a routerLink="/items/{{item.id}}">
-            <img width="290px" src="{{item.imageURL}}" class="img-home img-responsive block">
+            <img width="310px" src="{{item.imageURL}}" class="img-home img-responsive block">
           </a>
           <div align="center">
             <p class="lead">{{item.name}}</p>

@@ -2,7 +2,7 @@
 <br>
 <div class="container">
   <p class="lead" align="center">
-  Your name:  {{user.username}}
+  Login:  {{user.username}}
   </p>
   <p class="lead" align="center">
   Email: {{user.email}}
@@ -23,7 +23,7 @@
       <div class="row">
         <div *ngFor="let collection of user.collections" class="col-md-4 col-sm-6">
           <a routerLink="/collections/{{collection.id}}">
-            <img width="290px" src="{{collection.imageURL}}" class="img-responsive">
+            <img width="290px" src="{{collection.imageURL}}" class="img-responsive block">
           </a>
           <div align="center">
             <p class="lead">{{collection.name}}
@@ -40,4 +40,4 @@
     </div>
   </div>
 </div>
-
+</div>

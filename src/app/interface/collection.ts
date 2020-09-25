@@ -5,6 +5,7 @@ export interface Collection {
   imageURL: string;
   description: string;
   userId: number;
+  username: string;
   items: {
     id: number;
     name: string;

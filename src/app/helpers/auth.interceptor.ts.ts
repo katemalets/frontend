@@ -16,8 +16,8 @@ export class AuthInterceptor implements HttpInterceptor{
     let authReq = req;
     const token = this.token.getToken();
     const stopThisRequest = this.uploadService.getStopThisRequest();
-    console.log('STOPREQUEST?' + stopThisRequest);
     if (stopThisRequest) {
+      console.log('--- request is without header - ' + stopThisRequest);
       this.uploadService.setStopThisRequest(false);
       return next.handle(req);
     }

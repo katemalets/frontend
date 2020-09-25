@@ -25,35 +25,15 @@
       </h1>
       <p class="font-description">{{item.description}}</p>
 
-      <p class="font-description">Item can be found by these tags: </p>
+      <p class="font-description">Tags: </p>
+
       <div *ngFor="let tag of item.tags">
         <span class="font-description">{{tag.name}}</span>
-        <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-          <mat-icon (click)="deleteTag(tag)">remove</mat-icon>
-        </button>
       </div>
-      <button mat-icon-button *ngIf="collection.userId == tokenUserId || collection.userId == userId">
-        <mat-icon  routerLink="/tags/items/{{item.id}}" routerLinkActive="active">add</mat-icon>
-      </button>
+    <div *ngIf="item.tags['length'] === 0" class="alert alert-warning" role="alert">
+      No tags found
     </div>
-  </div>
-
-<div class="container">
-  <hr>
-  <p class="lead" align="center">Comments</p>
-  <br>
-  <div class="row comment" *ngFor="let comment of item.comments">
-    <div class="head">
-      <p class='user'>{{comment.username}} :  </p>
     </div>
-    <div></div>
-    <div class="font-description"> {{comment.comment}} </div>
-    <hr>
-  </div>
-  <form *ngIf="tokenUserId != null" method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
-    <input formControlName="comment" type="text" class="form-control" placeholder="  Add a comment">
-    <br>
-    <button type="submit" class="btn btn-secondary">Send</button>
-  </form>
-</div>
+    </div>
+  <app-comment-list></app-comment-list>
 </div>

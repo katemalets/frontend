@@ -26,7 +26,6 @@ export class TagItemsComponent implements OnInit {
     this.tagService.getItems(tagId).subscribe(data => {
       this.items = data;
       console.log(this.items);
-      //console.log('Data =' + JSON.stringify(data));
     });
   }
 }

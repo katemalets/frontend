@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Collection} from '../../../interface/collection';
 import {CollectionService} from '../../../services/collection.service';
 import {TokenStorageService} from '../../../services/token-storage.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../interface/user';
 
 @Component({
   selector: 'app-collection-list',
@@ -10,10 +12,12 @@ import {TokenStorageService} from '../../../services/token-storage.service';
 })
 export class CollectionListComponent implements OnInit {
 
-  constructor(private collectionService: CollectionService) { }
+  constructor(private collectionService: CollectionService,
+              private userService: UserService) { }
 
   url = '/collections';
   collections: Collection[];
+  collection: Collection;
 
   ngOnInit(): void {
     this.getCollections();
@@ -21,7 +25,7 @@ export class CollectionListComponent implements OnInit {
 
   getCollections(): void {
     this.collectionService.getCollections(this.url).subscribe(data => {
-    //  console.log('Collections: ' + JSON.stringify(data));
+      console.log(data);
       this.collections = data;
     });
   }

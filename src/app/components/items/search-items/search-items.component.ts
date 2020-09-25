@@ -10,7 +10,6 @@ import {ItemService} from '../../../services/item.service';
 })
 export class SearchItemsComponent implements OnInit {
 
-  url: 'items';
   items: Item[];
   searchMode = false;
 
@@ -26,7 +25,6 @@ export class SearchItemsComponent implements OnInit {
 
   getSelectedItems(){
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
-    console.log('search mode = ' + this.searchMode);
     if (this.searchMode){
       this.getChosenItems();
     } else {
@@ -36,17 +34,17 @@ export class SearchItemsComponent implements OnInit {
 
   getItems(): void{
     this.itemService.getItems('/items').subscribe(data => {
-    this.items = data;
-    console.log('general items' + this.items);
+      this.items = data;
+      console.log(this.items);
     });
   }
 
   getChosenItems(): void {
     const keyword: string = this.route.snapshot.paramMap.get('keyword');
-    console.log('keyword = ' + keyword);
+    console.log('Searched items by keyword word = ' + keyword);
     this.itemService.searchItems(keyword).subscribe(data => {
       this.items = data;
-      console.log('chosen items' + this.items);
+      console.log(this.items);
     });
   }
 }
