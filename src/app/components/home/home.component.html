@@ -35,9 +35,11 @@
           </button>
           </p>
             </div>
-
         </div>
     </div>
+      <div *ngIf="user.collections['length'] === 0" class="alert alert-warning" role="alert">
+        No collections found
+      </div>
   </div>
 </div>
 </div>

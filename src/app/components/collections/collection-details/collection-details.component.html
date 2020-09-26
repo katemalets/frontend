@@ -9,7 +9,7 @@
       <h1 align="center" class="lead">{{collection.name}}
         <button mat-icon-button>
           <mat-icon *ngIf="tokenUserId !== undefined"
-                    (click)="addCollection(collection)">save_alt</mat-icon>
+                    (click)="addCollection(collection)">add</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
@@ -21,7 +21,7 @@
         </button>
         <button mat-icon-button>
           <mat-icon *ngIf="collection.userId == tokenUserId || collection.userId == userId"
-                    routerLink="/items/collections/{{collection.id}}">add</mat-icon>
+                    routerLink="/items/collections/{{collection.id}}">note_add</mat-icon>
         </button>
       </h1>
       <p class="font-description">{{collection.description}}</p>
@@ -49,6 +49,9 @@
         </div>
       </div>
     </div>
+      <div *ngIf="collection.items['length'] === 0" class="alert alert-warning" role="alert">
+        No items found
+      </div>
   </div>
 </div>
 </div>

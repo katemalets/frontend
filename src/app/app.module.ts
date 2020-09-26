@@ -94,18 +94,10 @@ const routes: Routes = [
 })
 export class AppModule { }
 
-
 /*TODO:
-*   1. collection image should contain some of item images, not one and only
-*   2. highlight titles
-*   3. CenterY likes counter with icons (move up icons)
-*   4. Misleading "i" items
-*   5. no titles for collections and items
-*   6. use + icon as "add to my collections". Add item as text + icon.
-*   7. Removing tags in editing screen.
-*   8. jopa s kommentami :)
-*   11. User registration
-*   12. dead-looking my account
-*   13. error message to the bottom (above button)
-*   14. block button if username or password not entered
+*   1. Misleading "i" items
+*   2. jopa s kommentami :)
+*   3. User registration
+*   4. dead-looking my account
+*   5. block button if username or password not entered
 * */

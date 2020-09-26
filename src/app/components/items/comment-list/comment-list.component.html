@@ -1,0 +1,17 @@
+<div class="container">
+  <hr>
+  <p class="lead" align="center">Comments</p>
+  <br>
+  <div class="row comment" *ngFor="let comment of item.comments">
+    <div class="head">
+      <div class='font-description'>{{comment.username}} : {{comment.comment}} </div>
+      <br>
+    </div>
+  </div>
+  <br>
+  <form *ngIf="tokenUserId != null" method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
+    <input formControlName="comment" type="text" class="form-control" placeholder="  Add a comment">
+    <br>
+    <button type="submit" class="btn btn-secondary">Send</button>
+  </form>
+</div>

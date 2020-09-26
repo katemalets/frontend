@@ -1,20 +1,19 @@
 <div class="main-content">
     <div class="container-fluid">
-      <hr>
       <p class="lead main-header" align="center">
-        Most popular tags
+        Tags
       </p>
       <div class="row">
         <div *ngFor="let tag of tags" class="col-md-2 col-sm-4">
           <a routerLink="/tags/top/items/{{tag.id}}">
-              <p class="font-description" style="color: #666666"> {{tag.name}} </p>
+              <p class="font-description" style="color: #666666"> {{tag.name}} [{{tag.itemsNumber}}] </p>
           </a>
         </div>
       </div>
 
       <hr>
       <p class="lead main-header" align="center">
-        Collections with lots of items
+        Popular collections
       </p>
       <div class="row">
         <div *ngFor="let collection of collections" class="col-md-4 col-sm-6">
@@ -31,7 +30,7 @@
       </div>
       <hr>
       <p class="lead main-header" align="center">
-       Last added items
+       Latest items
       </p>
 
       <div class="row">

@@ -21,18 +21,13 @@
           <mat-icon *ngIf="tokenUserId != null"
                     (click)="dislikeItem(item)">favorite</mat-icon>
         </button>
-        <span class="lead" *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
+        <span style="margin-left: 1%; font-size: 70%" *ngIf="tokenUserId != null">{{item.likesNumber}}</span>
       </h1>
       <p class="font-description">{{item.description}}</p>
 
-      <p class="font-description">Tags: </p>
-
-      <div *ngFor="let tag of item.tags">
-        <span class="font-description">{{tag.name}}</span>
-      </div>
-    <div *ngIf="item.tags['length'] === 0" class="alert alert-warning" role="alert">
-      No tags found
-    </div>
+      <span *ngFor="let tag of item.tags" style="padding-right: 2%;">
+         <a routerLink="/tags//top/items/{{tag.id}}" class="button15">{{tag.name}}</a>
+      </span>
     </div>
     </div>
   <app-comment-list></app-comment-list>
