@@ -4,7 +4,7 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import * as  Cloudinary from 'cloudinary-core';
 
 import { AppComponent } from './app.component';
-import { ActivatedRoute, RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/security/register/register.component';

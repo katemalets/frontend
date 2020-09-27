@@ -9,7 +9,7 @@ import {TagService} from '../../services/tag.service';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  styleUrls: ['./main-page.component.css'],
 })
 export class MainPageComponent implements OnInit {
 
@@ -30,19 +30,19 @@ export class MainPageComponent implements OnInit {
   }
 
   getTopCollections(): void{
-    this.collectionService.getTopCollections(this.maxCollectionsNumber, '/collections').subscribe(data => {
+    this.collectionService.getTopCollections(this.maxCollectionsNumber).subscribe(data => {
       this.collections = data;
     });
   }
 
   getLastItems(): void{
-    this.itemService.getLastItems(this.maxItemsNumber, '/items').subscribe(data => {
+    this.itemService.getLastItems(this.maxItemsNumber).subscribe(data => {
       this.items = data;
     });
   }
 
   getTags(): void{
-    this.tagService.getTags( '/tags').subscribe( data => {
+    this.tagService.getTags().subscribe( data => {
       this.tags = data;
     });
   }

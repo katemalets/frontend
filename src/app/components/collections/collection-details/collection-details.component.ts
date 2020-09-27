@@ -17,7 +17,6 @@ export class CollectionDetailsComponent implements OnInit {
   tokenUserId: number;
   userId: number;
   authorities: string[];
-  url = '/collections';
   collection: Collection;
   item: Item;
   message: string;
@@ -48,7 +47,7 @@ export class CollectionDetailsComponent implements OnInit {
 
   private handleCollectionDetails() {
     const collectionId: number = +this.route.snapshot.paramMap.get('id');
-    this.collectionService.getCollection(collectionId, this.url).subscribe(
+    this.collectionService.getCollection(collectionId).subscribe(
       data => {
         this.collection = data;
         this.checkAuthority();
@@ -87,7 +86,7 @@ export class CollectionDetailsComponent implements OnInit {
 
   private handleItemDetails() {
     const itemId: number = +this.route.snapshot.paramMap.get('id');
-    this.itemService.getItem(itemId, this.url).subscribe(
+    this.itemService.getItem(itemId).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;

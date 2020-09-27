@@ -28,7 +28,6 @@ export class ItemDetailsComponent implements OnInit {
   collectionId: number;
   collection: Collection;
   currentUser: User;
-  url = '/items';
   item: Item;
   userLiked: boolean;
   itemId: number;
@@ -40,10 +39,10 @@ export class ItemDetailsComponent implements OnInit {
               private commentService: CommentService,
               private route: ActivatedRoute,
               private router: Router,
-              private collectionService: CollectionService,
-              private formBuilder: FormBuilder) { }
+              private collectionService: CollectionService) { }
 
   ngOnInit(): void {
+    this.handleItemDetails();
     this.itemId = +this.route.snapshot.paramMap.get('id');
     this.currentUser = this.tokenService.getUser();
     if (this.tokenService.getToken()){
@@ -53,7 +52,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   private handleItemDetails() {
-    this.itemService.getItem(this.itemId, this.url).subscribe(
+    this.itemService.getItem(this.itemId).subscribe(
       data => {
         //  console.log(('Data: ' + JSON.stringify(data)));
         this.item = data;
@@ -77,11 +76,9 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   private handleCollectionDetails(collectionId: number) {
-    this.collectionService.getCollection(collectionId, '/collections').subscribe(
+    this.collectionService.getCollection(collectionId).subscribe(
       data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
-      //  this.items = this.collection.items;
         this.checkAuthority();
       }
     );

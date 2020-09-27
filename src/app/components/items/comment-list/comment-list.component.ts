@@ -40,7 +40,7 @@ export class CommentListComponent implements OnInit {
   }
 
   private handleItemDetails() {
-    this.itemService.getItem(this.itemId, '/items').subscribe(
+    this.itemService.getItem(this.itemId).subscribe(
       data => {
         this.item = data;
       }

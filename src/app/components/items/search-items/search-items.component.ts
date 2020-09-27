@@ -33,7 +33,7 @@ export class SearchItemsComponent implements OnInit {
   }
 
   getItems(): void{
-    this.itemService.getItems('/items').subscribe(data => {
+    this.itemService.getItems().subscribe(data => {
       this.items = data;
       console.log(this.items);
     });

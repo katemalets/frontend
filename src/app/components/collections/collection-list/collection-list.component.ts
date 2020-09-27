@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Collection} from '../../../interface/collection';
 import {CollectionService} from '../../../services/collection.service';
-import {TokenStorageService} from '../../../services/token-storage.service';
-import {UserService} from '../../../services/user.service';
-import {User} from '../../../interface/user';
 
 @Component({
   selector: 'app-collection-list',
@@ -12,8 +9,7 @@ import {User} from '../../../interface/user';
 })
 export class CollectionListComponent implements OnInit {
 
-  constructor(private collectionService: CollectionService,
-              private userService: UserService) { }
+  constructor(private collectionService: CollectionService) { }
 
   url = '/collections';
   collections: Collection[];

@@ -30,11 +30,9 @@ export class UpdateCollectionComponent implements OnInit {
   }
 
   private handleCollectionDetails() {
-    this.collectionService.getCollection(this.collectionId, '/collections/update').subscribe(
+    this.collectionService.getCollection(this.collectionId).subscribe(
       data => {
-        //  console.log(('Data: ' + JSON.stringify(data)));
         this.collection = data;
-       // this.imageUrl = this.collection.imageURL;
       }
     );
   }

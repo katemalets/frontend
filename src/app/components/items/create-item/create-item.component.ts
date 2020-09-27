@@ -18,6 +18,7 @@ export class CreateItemComponent implements OnInit {
   file: File;
   collectionId: number;
   imageName: '';
+  isImageAdded = false;
 
   constructor(private itemService: ItemService,
               private formBuilder: FormBuilder,
@@ -27,25 +28,33 @@ export class CreateItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.collectionId = +this.route.snapshot.paramMap.get('id');
+    this.isImageAdded = false;
     this.createForm();
   }
 
   uploadImage(item: FormGroup): void {
-  const data = new FormData();
-  const fileData = this.file[0];
-  data.append('file', fileData);
-  data.append('upload_preset', 'jbaom1cx');
-  data.append('cloud_name', 'katemalets');
-  this.uploadService.uploadImage(data).subscribe((response) => {
-    if (response) {
-      console.log(response);
+    if (this.isImageAdded) {
+      const data = new FormData();
+      const fileData = this.file[0];
+      data.append('file', fileData);
+      data.append('upload_preset', 'jbaom1cx');
+      data.append('cloud_name', 'katemalets');
+      this.uploadService.uploadImage(data).subscribe((response) => {
+        if (response) {
+          console.log(response);
+        }
+        this.imageName = response.url;
+        if (item.valid) {
+          console.log(item + 'saved');
+          this.addItem(item.value);
+        }
+      });
+    } else {
+      if (item.valid) {
+        console.log(item + 'saved');
+        this.addItem(item.value);
+      }
     }
-    this.imageName = response.url;
-    if (item.valid) {
-      console.log(item + 'saved');
-      this.addItem(item.value);
-    }
-  });
   }
 
   private createForm() {
@@ -72,6 +81,7 @@ export class CreateItemComponent implements OnInit {
   }
 
   onSelect(event) {
+    this.isImageAdded = true;
     this.file = event.addedFiles;
     console.log(this.file);
   }

@@ -32,7 +32,7 @@ export class UpdateItemComponent implements OnInit {
   }
 
   private handleItemDetails() {
-    this.itemService.getItem(this.itemId, '/items/update').subscribe(
+    this.itemService.getItem(this.itemId).subscribe(
       data => {
         this.item = data;
       }

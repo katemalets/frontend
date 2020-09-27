@@ -2,6 +2,9 @@
   <hr>
   <p class="lead" align="center">Comments</p>
   <br>
+  <div *ngIf="item.comments['length'] === 0" class="alert alert-warning" role="alert">
+    No comments found
+  </div>
   <div class="row comment" *ngFor="let comment of item.comments">
     <div class="head">
       <div class='font-description'>{{comment.username}} : {{comment.comment}} </div>
@@ -10,8 +13,13 @@
   </div>
   <br>
   <form *ngIf="tokenUserId != null" method="post" [formGroup]="myForm" (ngSubmit)="submitForm(myForm)">
+    <div class="row">
+      <div class="col-md-8">
     <input formControlName="comment" type="text" class="form-control" placeholder="  Add a comment">
-    <br>
+      </div>
+      <div class="col-md-4">
     <button type="submit" class="btn btn-secondary">Send</button>
+      </div>
+    </div>
   </form>
 </div>

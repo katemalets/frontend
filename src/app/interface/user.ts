@@ -14,8 +14,4 @@ export interface User {
     imageURL: string;
     userId: number;
   };
-  likedItems: {
-    id: number;
-    name: string
-  };
 }
